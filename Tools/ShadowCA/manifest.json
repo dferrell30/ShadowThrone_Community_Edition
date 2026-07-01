@@ -1,0 +1,11 @@
+{
+  "Name": "Shadow CA",
+  "CodeName": "Sentinel",
+  "Version": "Future",
+  "LaunchScript": "ShadowCA.ps1",
+  "Reports": "Reports",
+  "Logs": "Logs",
+  "Exports": "Exports",
+  "Config": "Config",
+  "Description": "Conditional Access and access governance controls."
+}
