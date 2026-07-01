@@ -20,8 +20,6 @@
 
 ![Platform](https://img.shields.io/badge/Platform-Windows-blue)
 
-![License](https://img.shields.io/badge/License-MIT-green)
-
 ![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
 
 ## Included Shadow Suite Runtimes
