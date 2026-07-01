@@ -1,4 +1,14 @@
+<p align="center">
+
+<img src="Assets/Logos/shadowthrone.png" width="180">
+
 # Shadow Throne v1.0
+
+### The Command Center of the Shadow Suite
+
+*Orchestrate • Deploy • Verify • Hunt • Protect*
+
+</p>
 
 **Shadow Throne** is the command and orchestration layer for the Shadow Suite defensive security tool family. It provides a unified Shadow Suite dashboard for launching tools, viewing operational status, indexing reports/logs, and surfacing evidence without merging or modifying the individual tools.
 
