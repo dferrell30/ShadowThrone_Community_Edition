@@ -18,6 +18,120 @@ Shadow Throne v1.0 ships with packaged runtime folders under `Tools\`:
 
 Each tool remains its own runtime and retains its own UI, logic, Graph permissions, assets, reports, logs, KQL/playbooks, and release lifecycle.
 
+Shadow Throne v1.0 GitHub Release Walkthrough
+1. Create the GitHub repository
+
+Go to GitHub → New repository
+
+Recommended name:
+
+ShadowThrone
+
+Description:
+
+Shadow Throne v1.0 – Command Center for the Shadow Suite
+
+Choose:
+
+Public or Private
+Do not initialize with README if your folder already has one
+
+Create the repo.
+
+2. Prepare your local folder
+
+Use the approved release folder.
+
+Make sure the root looks like:
+
+ShadowThrone
+├── ShadowThrone.ps1
+├── README.md
+├── CHANGELOG.md
+├── LICENSE
+├── SECURITY.md
+├── SHADOW-SUITE-DOCTRINE.md
+├── Assets
+├── Web
+├── Tools
+├── Logs
+├── Reports
+├── Exports
+├── Intelligence
+└── Imports
+3. Upload with GitHub Desktop or web upload
+
+Simplest method:
+
+Open the GitHub repo.
+Click Add file.
+Click Upload files.
+Drag all files/folders from your ShadowThrone folder.
+Commit with:
+Initial Shadow Throne v1.0 release
+4. Command-line upload option
+
+From PowerShell:
+
+cd C:\Path\To\ShadowThrone
+
+git init
+git add .
+git commit -m "Initial Shadow Throne v1.0 release"
+git branch -M main
+git remote add origin https://github.com/YOURNAME/ShadowThrone.git
+git push -u origin main
+5. Create the GitHub release
+
+Go to:
+
+Releases → Create a new release
+
+Tag:
+
+v1.0
+
+Release title:
+
+Shadow Throne v1.0 – Command Center
+
+Release notes:
+
+Initial public release of Shadow Throne, the command and orchestration layer for the Shadow Suite.
+
+Includes:
+- Shadow Throne command dashboard
+- Packaged runtime support for Shadow Suite tools
+- Report intelligence
+- Evidence inventory
+- Kingdom Status
+- Runtime isolation
+- Shadow Suite doctrine
+
+Attach the release ZIP.
+
+Publish release.
+
+6. Installation instructions for users
+
+Users should:
+
+Download the release ZIP.
+Extract it to:
+C:\Tools\ShadowThrone
+Unblock files:
+Get-ChildItem "C:\Tools\ShadowThrone" -Recurse | Unblock-File
+Run:
+cd C:\Tools\ShadowThrone
+Set-ExecutionPolicy -Scope Process Bypass
+.\ShadowThrone.ps1
+7. Known issue note
+
+Add this to README or release notes:
+
+Known Issue:
+The FRONT button is currently under construction. Tools may launch behind the browser window. If a launched tool does not appear immediately, check the taskbar or minimize the browser.
+
 ## Repository Structure
 
 ```text
