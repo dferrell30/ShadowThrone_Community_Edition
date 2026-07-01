@@ -1,0 +1,14 @@
+{
+  "Name": "Shadow Trace Ops",
+  "CodeName": "Hunter",
+  "Version": "Community Edition",
+  "LaunchScript": "Toolkit/Shadow-Trace-Ops.ps1",
+  "Reports": "Toolkit/Reports",
+  "Logs": "Toolkit/Logs",
+  "Exports": "Toolkit/Exports",
+  "Config": "Toolkit/Config",
+  "Assets": "Toolkit/Assets",
+  "KQL": "Toolkit/Config/KQL",
+  "Playbooks": "Toolkit/Config/Playbooks",
+  "Description": "Post-authentication investigation and signal intelligence platform with full KQL and playbook runtime."
+}
