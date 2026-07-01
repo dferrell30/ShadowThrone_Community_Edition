@@ -1,6 +1,6 @@
 <p align="center">
 
-<img src="Assets/shadowthrone-hero-v1.png" width="300">
+<img src="Assets/shadowthrone-hero-v1.png" width="1080">
 
 # Shadow Throne v1.0
 
