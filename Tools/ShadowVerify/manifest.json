@@ -1,0 +1,15 @@
+{
+  "Name": "Shadow Verify",
+  "CodeName": "Trial Master",
+  "Version": "2.0 Community Edition",
+  "LaunchScript": "Invoke-ShadowVerify.ps1",
+  "Reports": "logs",
+  "Logs": "logs",
+  "Exports": "logs",
+  "Config": "docs",
+  "Assets": "images",
+  "Logo": "Shadowverify.png",
+  "PrimaryRole": "Endpoint Validation",
+  "Distribution": true,
+  "Description": "Defender validation framework for endpoint-local telemetry, alert, ASR, and EDR visibility testing."
+}
