@@ -1,0 +1,12 @@
+{
+  "Name": "Shadow Deploy - Defender for Endpoint",
+  "CodeName": "Warrior",
+  "Version": "1.0",
+  "LaunchScript": "ShadowDeployv1.0.ps1",
+  "Reports": "Reports",
+  "Logs": "logs",
+  "Exports": "Exports",
+  "Config": "Config",
+  "Backups": "Backups",
+  "Description": "Deploy, validate, back up, and report on Defender for Endpoint security settings."
+}

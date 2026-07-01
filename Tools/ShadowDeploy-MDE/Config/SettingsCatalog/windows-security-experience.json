@@ -1,0 +1,265 @@
+{
+  "name": "Block UI Windows Security Experience Policy 122025",
+  "description": "This policy will hide areas of the Windows Security experience UI as well as enforce tamper protection. This ensures that users or threat actors will not be able to modify settings via the UI, while protecting critical function of Defender Anti-virus.",
+  "platforms": "windows10",
+  "technologies": "mdm,microsoftSense",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "settings": [
+    {
+      "id": "0",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "vendor_msft_defender_configuration_tamperprotection_options",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "5655cab2-7e6b-4c49-9ce2-3865da05f7e6"
+        },
+        "choiceSettingValue": {
+          "value": "vendor_msft_defender_configuration_tamperprotection_options_0",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "fc365da9-2c1b-4f79-aa4b-dedca69e728f",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "1",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablevirusui",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "0a794014-5f4b-48ac-bcc1-c01c520036ad"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablevirusui_0",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "c7d8d335-5b76-464b-bb16-76cbe8abfa34",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "2",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disableaccountprotectionui",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "ac41827d-76a1-47fc-a457-d399b5f73181"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disableaccountprotectionui_1",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "3c9b8f91-de2d-4722-8eb5-df9a8a2e8830",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "3",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disableappbrowserui",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "66e00605-0812-4071-8ebd-25c59e21da53"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disableappbrowserui_0",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "1e13433f-873d-4887-bb7f-3ee3da08b23d",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "4",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablecleartpmbutton",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "b74cf007-28b9-472d-908c-943963a8e933"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablecleartpmbutton_1",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "a87e6581-4959-4c05-962c-ebfff40bf7a0",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "5",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_hideransomwaredatarecovery",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "af974717-e1f1-475b-83f6-548c70e97028"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_hideransomwaredatarecovery_0",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "251963db-3981-4ca3-8df1-b92f0a661c75",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "6",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_hidewindowssecuritynotificationareacontrol",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "3a9dc836-5f32-4428-a04a-1bad526d3c7b"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_hidewindowssecuritynotificationareacontrol_0",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "39f2d84f-4082-478d-bf5c-3317ffb14fd7",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "7",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_enablecustomizedtoasts",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "bcf504b2-0285-4ec5-8d3c-cf135d98d925"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_enablecustomizedtoasts_1",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "e0ce0a98-40e4-47ac-82e2-9de0616c6760",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "8",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablefamilyui",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "afcadc31-118d-4a5f-8a70-9f214389aa11"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablefamilyui_1",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "6add170a-7868-41d1-82a9-1038d2b3ce2b",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "9",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablehealthui",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "b5b6359e-b835-420d-a341-9ed4e1340b82"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablehealthui_1",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "ebff67f1-8ca3-4450-a58e-ca4a7fa30e17",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "10",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablenetworkui",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "5f789df1-df7d-446e-bac4-f00bde46d9f2"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disablenetworkui_1",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "46da9ebb-fe6a-4a70-8e2d-6a3359ddb655",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "11",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disableenhancednotifications",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "90d71ec1-eace-4cf1-a2da-023962fac6c5"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disableenhancednotifications_1",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "aeb811f1-7980-4c19-a6b9-959aa84582c8",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    },
+    {
+      "id": "12",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "settingDefinitionId": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disabletpmfirmwareupdatewarning",
+        "auditRuleInformation": null,
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "97f189ba-bcf6-4cd4-9b28-84866e982486"
+        },
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_windowsdefendersecuritycenter_disabletpmfirmwareupdatewarning_1",
+          "settingValueTemplateReference": {
+            "settingValueTemplateId": "355986f7-fe53-4d4b-957c-babcf6d3cd75",
+            "useTemplateDefault": false
+          },
+          "children": []
+        }
+      }
+    }
+  ],
+  "templateReference": {
+    "templateId": "d948ff9b-99cb-4ee0-8012-1fbc09685377_1",
+    "templateFamily": "endpointSecurityAntivirus",
+    "templateDisplayName": "Windows Security Experience",
+    "templateDisplayVersion": "Version 1"
+  }
+}
+

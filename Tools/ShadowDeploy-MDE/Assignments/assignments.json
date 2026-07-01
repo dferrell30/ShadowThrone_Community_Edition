@@ -1,0 +1,14 @@
+{
+  "defaultGroupName": "MDE Pilot Devices",
+  "policies": {
+    "Antivirus Baseline": "MDE Pilot Devices",
+    "Antivirus": "MDE Pilot Devices",
+    "Firewall": "MDE Pilot Devices",
+    "ASR": "MDE Pilot Devices",
+    "EDR": "MDE Pilot Devices",
+    "Web Protection": "MDE Pilot Devices",
+    "Windows Security Experience": "MDE Pilot Devices",
+    "AVC Update Controls": "MDE Pilot Devices",
+    "Application Control": "MDE Pilot Devices"
+  }
+}
