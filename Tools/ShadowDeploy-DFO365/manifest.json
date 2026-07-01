@@ -1,0 +1,12 @@
+{
+  "Name": "Shadow Deploy - Defender for Office 365",
+  "CodeName": "Gatekeeper",
+  "Version": "1.0",
+  "LaunchScript": "scripts/ShadowDeploy-DFO365-Community-EditionV1.0.ps1",
+  "Reports": "Reports",
+  "Logs": "Logs",
+  "Config": "Config",
+  "Backups": "Backups",
+  "Assets": "assets",
+  "Description": "Deploy, validate, scope, and report on Defender for Office 365 protections."
+}
