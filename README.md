@@ -14,6 +14,16 @@
 
 > Preserve the defenders. Improve the castle.
 
+![Version](https://img.shields.io/badge/Version-v1.0-purple)
+
+![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-blue)
+
+![Platform](https://img.shields.io/badge/Platform-Windows-blue)
+
+![License](https://img.shields.io/badge/License-MIT-green)
+
+![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
+
 ## Included Shadow Suite Runtimes
 
 Shadow Throne v1.0 ships with packaged runtime folders under `Tools\`:
