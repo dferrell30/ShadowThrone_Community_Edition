@@ -1,0 +1,2411 @@
+:root{--bg:#04050b;--panel:#0b0d17;--panel2:#101220;--border:#3a214d;--purple:#b14cff;--purple2:#6d2499;--text:#f4f1ff;--muted:#bfb1d8;--green:#58ff72;--gold:#ffca3a;--cyan:#33e6ff;--red:#ff315f}*{box-sizing:border-box}body{margin:0;background:#03040a;color:var(--text);font-family:Segoe UI,Arial,sans-serif;overflow:hidden}
+#app{display:grid;grid-template-columns:250px minmax(0,1fr);height:100vh;background:radial-gradient(circle at 65% 0,rgba(134,42,189,.18),transparent 40%),linear-gradient(180deg,#070812,#020309)}.sidebar{border-right:1px solid var(--border);background:linear-gradient(180deg,#090a13,#05060c);padding:16px 14px;display:flex;flex-direction:column;gap:18px}.brand-wrap{height:160px;display:grid;place-items:center}.brand-logo{max-width:172px;max-height:172px;filter:drop-shadow(0 0 20px rgba(177,76,255,.35))}.nav{display:grid;gap:8px}.nav-item{background:transparent;border:1px solid transparent;color:var(--text);border-radius:8px;padding:13px 12px;display:grid;grid-template-columns:28px 1fr;text-align:left;gap:10px;align-items:center;cursor:pointer}.nav-item span{font-size:22px;color:#d075ff}.nav-item b{display:block;font-size:13px}.nav-item small{display:block;color:var(--muted);margin-top:3px}.nav-item:hover,.nav-item.active{background:linear-gradient(90deg,rgba(177,76,255,.25),rgba(177,76,255,.05));border-color:#823ac4;box-shadow:0 0 18px rgba(177,76,255,.14)}.side-card{border:1px solid var(--border);border-radius:12px;padding:16px;background:rgba(255,255,255,.03);margin-top:auto;text-align:center}.crown{font-size:34px;color:var(--purple);filter:drop-shadow(0 0 14px rgba(177,76,255,.7))}.side-card p{font-size:12px;line-height:1.45;color:#ddd}.side-footer{display:grid;gap:4px;color:#c777ff;font-size:12px}.side-footer span{color:#bfb1d8}.main{height:100vh;overflow:auto;padding:20px 20px 16px}
+.main-inner{max-width:1720px;margin:0 auto;width:100%}.hero{border:1px solid var(--border);height:clamp(190px,14vw,245px);border-radius:8px;overflow:hidden;box-shadow:0 0 32px rgba(0,0,0,.45);background:#05050b}.hero img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;image-rendering:auto}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}.metric{border:1px solid var(--border);border-radius:12px;background:linear-gradient(180deg,rgba(20,22,35,.95),rgba(5,6,12,.95));padding:18px;text-align:center;box-shadow:inset 0 0 20px rgba(177,76,255,.05)}.metric span{display:block;color:#eee;font-size:12px;font-weight:700}.metric strong{font-size:28px;display:block;margin:6px 0;color:#fff}.metric small{color:#c475ff}.green{color:var(--green)!important}.layout{display:grid;grid-template-columns:1fr 295px;gap:18px}.content{min-width:0}.view{display:none}.view.active{display:block}.section-title{display:flex;gap:10px;align-items:flex-start;margin:0 0 12px}.section-title span{color:var(--purple);font-size:22px}.section-title h2{margin:0;color:#c66cff;font-size:18px;letter-spacing:.5px}.section-title p{margin:3px 0 0;color:#cfc3e6;font-size:12px}.defender-grid{display:grid;grid-template-columns:repeat(5,minmax(185px,220px));gap:18px;align-items:start;justify-content:center}.defender-card{position:relative;border:1px solid #6c3496;border-radius:12px;overflow:hidden;cursor:pointer;background:linear-gradient(180deg,#080911,#03040a);box-shadow:0 0 0 rgba(0,0,0,0);transition:.18s ease;display:flex;flex-direction:column;min-height:0}.defender-card:hover{transform:translateY(-3px);border-color:#d476ff;box-shadow:0 0 32px rgba(177,76,255,.32)}.defender-card.missing{filter:grayscale(.18)}.art-frame{width:100%;aspect-ratio:3/4;background:#05050b;display:grid;place-items:center;overflow:hidden}.art-frame img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;image-rendering:auto;transform:translateZ(0)}.defender-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:9px 10px 10px;background:linear-gradient(180deg,rgba(6,7,14,.96),rgba(3,4,10,.98));border-top:1px solid rgba(177,76,255,.28)}.launch-pill,.folder-link,.focus-link,.package-link{position:static;z-index:auto;border:1px solid #b14cff;background:linear-gradient(90deg,#491265,#21132f);color:#fff;border-radius:8px;text-align:center;padding:9px 10px;font-weight:900;letter-spacing:.35px;box-shadow:0 0 14px rgba(177,76,255,.15);font-size:11px;cursor:pointer}.folder-link,.focus-link,.package-link{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
+.package-link{border-color:#d6a84f;background:linear-gradient(90deg,#5a3512,#25190b)}
+.focus-link{border-color:#8d5cff;background:linear-gradient(90deg,#321457,#171022)}.launch-pill:hover,.folder-link:hover,.focus-link:hover,.package-link:hover{border-color:#d476ff;background:rgba(90,24,122,.82);box-shadow:0 0 16px rgba(177,76,255,.26)}.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.panel,.rail-card,.large-visual,.about-panel,.settings-grid,.file-list{border:1px solid var(--border);border-radius:12px;background:linear-gradient(180deg,rgba(15,17,27,.96),rgba(4,5,11,.96));padding:14px}.panel.visual{position:relative;min-height:170px;overflow:hidden;background:#05050b}.panel.visual img,.large-visual img{width:100%;height:100%;object-fit:contain;object-position:center;border-radius:8px;image-rendering:auto}.panel-action{position:absolute;right:18px;bottom:18px}.recent h3,.rail-card h3{margin:0 0 12px;color:#d377ff;font-size:15px}.recent button,.quick button,.action-row button,.panel-action{border:1px solid #7c32b8;background:linear-gradient(90deg,#3a1455,#1b1127);color:white;border-radius:8px;padding:10px 14px;font-weight:700;cursor:pointer}.recent button:hover,.quick button:hover,.action-row button:hover,.panel-action:hover{border-color:#d476ff;box-shadow:0 0 14px rgba(177,76,255,.24)}.activity-row,.status-row,.file-row{display:grid;grid-template-columns:80px 1fr;gap:10px;border-bottom:1px solid rgba(255,255,255,.08);padding:7px 0;font-size:13px}.activity-row small,.file-row small{color:#bfb1d8}.right-rail{display:grid;gap:12px;align-content:start}.status-row{grid-template-columns:1fr auto}.dot{display:inline-block;width:8px;height:8px;border-radius:99px;background:var(--green);margin-right:8px}.dot.wait{background:var(--gold)}.overall{border-top:1px solid rgba(255,255,255,.1);margin-top:10px;padding-top:12px;display:flex;justify-content:space-between}.quick{display:grid;gap:8px}.quick h3{margin-bottom:4px}.toggle-on{margin-top:10px;margin-left:auto;width:54px;text-align:center;border-radius:999px;background:linear-gradient(90deg,#451061,#43ff66);padding:6px;font-weight:900}.large-visual{height:auto;min-height:180px;max-height:360px;display:grid;place-items:center;background:#05050b;padding:12px;overflow:hidden}.large-visual img{height:auto;max-height:330px;width:auto;max-width:100%;object-fit:contain;object-position:center;image-rendering:auto}.flow-detail{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}.flow-detail div,.settings-grid div{border:1px solid var(--border);border-radius:10px;padding:14px;background:rgba(255,255,255,.03)}.flow-detail b,.settings-grid b{display:block;color:#d377ff}.flow-detail span,.settings-grid span{display:block;color:#d9cdea;margin-top:5px;font-size:13px}.action-row{display:flex;gap:10px;margin-bottom:12px}.file-list{min-height:200px}.logbox{height:420px;overflow:auto;border:1px solid var(--border);border-radius:10px;background:#020307;color:#51ff77;padding:12px;font-family:Consolas,monospace;font-size:12px}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.about-panel h1{font-size:42px;margin:0;color:#fff}.about-panel p{color:#d9cdea;line-height:1.55}@media(min-width:1900px){.main-inner{max-width:1760px}.defender-grid{grid-template-columns:repeat(5,220px)}.layout{grid-template-columns:minmax(0,1fr) 295px}.hero{height:230px}}
+@media(min-width:2300px){.main-inner{max-width:1800px}.defender-grid{grid-template-columns:repeat(5,220px)}body{background:#020309}.hero{height:225px}}
+@media(max-width:1500px){.defender-grid{grid-template-columns:repeat(3,minmax(185px,220px));justify-content:center}}
+@media(max-width:1300px){#app{grid-template-columns:210px 1fr}.defender-grid{grid-template-columns:repeat(2,minmax(185px,220px))}.layout{grid-template-columns:1fr}.right-rail{grid-template-columns:repeat(3,1fr)}}
+
+/* v3.2 responsive polish: prevent ultrawide/fullscreen stretching and keep art crisp */
+@media(min-width:1700px){.bottom-grid{grid-template-columns:minmax(420px,520px) minmax(420px,1fr);justify-content:center}.panel.visual{max-width:560px}.flow-detail{grid-template-columns:repeat(4,minmax(220px,1fr))}}
+
+
+/* v3.3 dashboard layout fix: banner fit, grouped defenders, report intelligence placeholders */
+.main-inner{max-width:1900px;margin:0 auto;width:100%;}
+.hero{height:auto;aspect-ratio:2360 / 506;max-height:340px;min-height:185px;display:grid;place-items:center;background:#05050b;}
+.hero img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;}
+.layout{grid-template-columns:minmax(0,1fr) 310px;gap:18px;}
+.defender-groups{display:grid;grid-template-columns:minmax(430px,1fr) minmax(220px,260px) minmax(430px,1fr);gap:18px;align-items:start;}
+.tool-group{border:1px solid rgba(177,76,255,.25);border-radius:14px;background:linear-gradient(180deg,rgba(17,18,31,.76),rgba(4,5,11,.74));padding:12px;min-width:0;}
+.tool-group-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);padding:0 2px 10px;margin-bottom:12px;color:#d377ff;font-weight:900;letter-spacing:.4px;}
+.tool-group-header small{color:#bfb1d8;font-weight:600;letter-spacing:0;}
+.tool-group-grid{display:grid;grid-template-columns:repeat(2,minmax(185px,220px));gap:14px;justify-content:center;align-items:start;}
+.tool-group.single .tool-group-grid{grid-template-columns:minmax(185px,220px);}
+.defender-card{width:100%;}
+.dashboard-lower{display:grid;grid-template-columns:minmax(360px,520px) minmax(420px,1fr) minmax(320px,420px);gap:14px;margin-top:16px;align-items:stretch;}
+.panel-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:10px;}
+.panel-head h3{margin:0;color:#d377ff;font-size:15px;}
+.panel-head span{color:#bfb1d8;font-size:11px;}
+.lifecycle-preview{overflow:hidden;min-height:220px;}
+.lifecycle-preview img{width:100%;height:135px;object-fit:contain;object-position:center;display:block;border-radius:10px;background:#05050b;}
+.lifecycle-mini-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.lifecycle-mini-actions button,.report-intel button{border:1px solid #7c32b8;background:linear-gradient(90deg,#3a1455,#1b1127);color:white;border-radius:8px;padding:10px 12px;font-weight:800;cursor:pointer;}
+.report-intel p{color:#d9cdea;line-height:1.45;margin:0 0 12px;font-size:13px;}
+.report-pills{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.report-pills span{border:1px solid rgba(177,76,255,.25);border-radius:999px;background:rgba(177,76,255,.08);padding:7px 9px;color:#e6d7ff;font-size:12px;text-align:center;}
+.lifecycle-command-row{display:grid;grid-template-columns:repeat(5,minmax(150px,1fr));gap:12px;margin-bottom:14px;}
+.lifecycle-command-row button{border:1px solid rgba(177,76,255,.3);border-radius:14px;background:linear-gradient(180deg,rgba(20,22,35,.96),rgba(5,6,12,.96));color:#fff;padding:14px 12px;cursor:pointer;display:grid;gap:6px;place-items:center;}
+.lifecycle-command-row button:hover{border-color:#d476ff;box-shadow:0 0 18px rgba(177,76,255,.24);transform:translateY(-1px);}
+.lifecycle-command-row span{font-size:30px;color:#c66cff;}
+.lifecycle-command-row b{font-size:13px;color:#fff;}
+.lifecycle-command-row small{font-size:11px;color:#bfb1d8;}
+.large-visual.contained{height:auto;min-height:0;max-height:none;padding:18px;}
+.large-visual.contained img{width:100%;max-width:1120px;height:auto;max-height:320px;object-fit:contain;}
+@media(min-width:2200px){.main-inner{max-width:1960px}.hero{max-height:360px}.defender-groups{grid-template-columns:minmax(470px,1fr) 250px minmax(470px,1fr)}.dashboard-lower{grid-template-columns:520px minmax(520px,1fr) 430px}}
+@media(max-width:1650px){.defender-groups{grid-template-columns:1fr}.tool-group-grid{grid-template-columns:repeat(auto-fit,minmax(185px,220px));}.dashboard-lower{grid-template-columns:1fr 1fr}.report-intel{grid-column:1/-1}.hero{max-height:300px}}
+@media(max-width:1200px){.dashboard-lower,.lifecycle-command-row{grid-template-columns:1fr}.right-rail{grid-template-columns:1fr}.hero{min-height:160px}.tool-group-grid{grid-template-columns:1fr}.defender-card{max-width:230px;margin:0 auto}}
+
+
+/* v3.8 banner + workspace button polish
+   Preserve v3.3 flagship identity while making workspace cards usable in windowed/fullscreen. */
+:root{
+  --shadow-purple:#b14cff;
+  --shadow-purple-soft:#d88cff;
+  --shadow-panel-border:#4b2364;
+}
+
+/* Keep the original purple Shadow Throne identity. Banner is fully visible, never cropped. */
+.hero{
+  height:clamp(132px, 10.5vw, 225px) !important;
+  min-height:132px !important;
+  max-height:225px !important;
+  aspect-ratio:auto !important;
+  padding:0 !important;
+  background:#05050b !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+.hero img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  display:block !important;
+  image-rendering:auto !important;
+  filter:drop-shadow(0 0 16px rgba(177,76,255,.18));
+}
+
+/* Workspace area: stable card sizes, no more clipped buttons. Horizontal scroll appears when needed. */
+.content{
+  min-width:0;
+  overflow-x:auto;
+  scrollbar-color:#6f2a9b #070812;
+  scrollbar-width:thin;
+}
+.content::-webkit-scrollbar,.tool-group::-webkit-scrollbar,.tool-group-grid::-webkit-scrollbar{height:12px;width:12px;}
+.content::-webkit-scrollbar-thumb,.tool-group::-webkit-scrollbar-thumb,.tool-group-grid::-webkit-scrollbar-thumb{background:#6f2a9b;border-radius:999px;border:2px solid #070812;}
+.content::-webkit-scrollbar-track,.tool-group::-webkit-scrollbar-track,.tool-group-grid::-webkit-scrollbar-track{background:#070812;}
+
+.defender-groups{
+  display:grid !important;
+  grid-template-columns:max-content max-content max-content !important;
+  gap:20px !important;
+  align-items:start !important;
+  justify-content:start !important;
+  min-width:max-content !important;
+  padding-bottom:14px !important;
+  overflow:visible !important;
+}
+.tool-group{
+  min-width:max-content !important;
+  padding:14px !important;
+  overflow:visible !important;
+}
+.tool-group-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2, 272px) !important;
+  gap:16px !important;
+  justify-content:start !important;
+  align-items:start !important;
+}
+.tool-group.single .tool-group-grid{
+  grid-template-columns:272px !important;
+}
+.defender-card{
+  width:272px !important;
+  min-width:272px !important;
+  max-width:272px !important;
+  border-color:rgba(177,76,255,.58) !important;
+  background:linear-gradient(180deg,rgba(12,13,22,.98),rgba(3,4,10,.98)) !important;
+}
+.art-frame{
+  aspect-ratio:3/4 !important;
+  min-height:0 !important;
+}
+.art-frame img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+
+/* Button area: larger, clean, no clipping. Primary row is always 3 columns. Secondary actions span full width. */
+.defender-actions{
+  display:grid !important;
+  grid-template-columns:repeat(3, minmax(0,1fr)) !important;
+  gap:8px !important;
+  padding:10px !important;
+  background:linear-gradient(180deg,rgba(6,7,14,.98),rgba(3,4,10,.98)) !important;
+  border-top:1px solid rgba(177,76,255,.35) !important;
+}
+.launch-pill,.focus-link,.folder-link,.package-link{
+  width:100% !important;
+  min-width:0 !important;
+  height:38px !important;
+  padding:0 8px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  font-size:11px !important;
+  line-height:1 !important;
+  letter-spacing:.2px !important;
+  border-radius:8px !important;
+}
+.launch-pill{background:linear-gradient(90deg,#541477,#251134) !important;border-color:#c36aff !important;}
+.focus-link{background:linear-gradient(90deg,#321457,#171022) !important;border-color:#9b6cff !important;}
+.folder-link{background:linear-gradient(90deg,#151623,#0b0c13) !important;border-color:rgba(255,255,255,.34) !important;}
+.package-link{background:linear-gradient(90deg,#6a3d11,#261808) !important;border-color:#e4b85a !important;color:#fff7d6 !important;}
+
+/* When Shadow Verify has more actions later, these remain readable and stack cleanly. */
+.defender-actions button:nth-child(n+4){grid-column:1 / -1;}
+
+/* Maintain v3.3 flagship layout while allowing windowed mode scrolling instead of clipping. */
+.main{
+  overflow:auto !important;
+}
+.main-inner{
+  max-width:1900px !important;
+  min-width:1180px !important;
+}
+.layout{
+  grid-template-columns:minmax(0,1fr) 310px !important;
+  align-items:start !important;
+}
+.right-rail{
+  min-width:300px !important;
+}
+
+/* Keep lower dashboard from crowding the workspaces. */
+.dashboard-lower{
+  min-width:960px;
+}
+
+@media(max-width:1500px){
+  .main-inner{min-width:1180px !important;}
+  .defender-groups{grid-template-columns:max-content max-content max-content !important;}
+  .tool-group-grid{grid-template-columns:repeat(2,272px) !important;}
+  .tool-group.single .tool-group-grid{grid-template-columns:272px !important;}
+  .right-rail{min-width:300px !important;}
+}
+
+@media(min-width:2200px){
+  .main-inner{max-width:1960px !important;}
+  .hero{height:215px !important;max-height:215px !important;}
+  .defender-card{width:280px !important;min-width:280px !important;max-width:280px !important;}
+  .tool-group-grid{grid-template-columns:repeat(2,280px) !important;}
+  .tool-group.single .tool-group-grid{grid-template-columns:280px !important;}
+}
+
+
+/* v3.9 workspace button completion
+   Keep flagship purple identity, preserve banner, and fix clipped workspace actions. */
+.hero{
+  height:clamp(170px, 12vw, 285px) !important;
+  min-height:170px !important;
+  max-height:285px !important;
+  aspect-ratio:auto !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+  background:#05050b !important;
+}
+.hero img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+
+/* Do not let wide/windowed layouts clip the defender workspaces. */
+.main{overflow:auto !important;}
+.main-inner{max-width:1900px !important;min-width:1240px !important;}
+.content{overflow-x:auto !important;overflow-y:visible !important;padding-bottom:8px;}
+.defender-groups{
+  grid-template-columns:max-content max-content max-content !important;
+  justify-content:start !important;
+  align-items:start !important;
+  min-width:max-content !important;
+  gap:20px !important;
+}
+.tool-group{min-width:max-content !important;overflow:visible !important;padding:14px !important;}
+.tool-group-grid{grid-template-columns:repeat(2, 300px) !important;gap:16px !important;align-items:start !important;}
+.tool-group.single .tool-group-grid{grid-template-columns:300px !important;}
+.defender-card{
+  width:300px !important;
+  min-width:300px !important;
+  max-width:300px !important;
+  height:auto !important;
+  overflow:hidden !important;
+}
+.art-frame{height:405px !important;aspect-ratio:auto !important;background:#02030a !important;cursor:pointer;}
+.art-frame img{width:100% !important;height:100% !important;object-fit:contain !important;object-position:center !important;display:block !important;}
+
+.defender-actions{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:8px !important;
+  padding:11px !important;
+  background:linear-gradient(180deg,rgba(8,9,17,.98),rgba(3,4,10,.98)) !important;
+  border-top:1px solid rgba(177,76,255,.42) !important;
+  min-height:0 !important;
+}
+.primary-actions{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:8px !important;
+  width:100% !important;
+}
+.defender-actions button{
+  min-width:0 !important;
+  width:100% !important;
+  height:39px !important;
+  padding:0 8px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:8px !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  font-size:12px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  letter-spacing:.15px !important;
+  cursor:pointer !important;
+}
+.launch-pill{background:linear-gradient(90deg,#5b147d,#281138) !important;border:1px solid #c36aff !important;color:#fff !important;}
+.focus-link{background:linear-gradient(90deg,#351558,#171021) !important;border:1px solid #9b6cff !important;color:#fff !important;}
+.folder-link{background:linear-gradient(90deg,#171824,#0b0c13) !important;border:1px solid rgba(255,255,255,.36) !important;color:#fff !important;}
+.package-link{background:linear-gradient(90deg,#6a3d11,#281807) !important;border:1px solid #e4b85a !important;color:#fff7d6 !important;}
+.wide-action{height:38px !important;background:linear-gradient(90deg,#1c1029,#090a12) !important;border:1px solid rgba(177,76,255,.55) !important;color:#fff !important;}
+.disabled-action,.wide-action.disabled{background:linear-gradient(90deg,#3a1012,#160708) !important;border:1px solid rgba(255,49,95,.35) !important;color:#ff8b9e !important;cursor:not-allowed !important;}
+
+/* Room for taller button stacks without crowding the rest of the dashboard. */
+.dashboard-lower{margin-top:20px !important;}
+.layout{grid-template-columns:minmax(0,1fr) 310px !important;gap:18px !important;}
+
+@media(min-width:2200px){
+  .main-inner{max-width:1980px !important;}
+  .hero{height:285px !important;max-height:285px !important;}
+  .defender-card{width:310px !important;min-width:310px !important;max-width:310px !important;}
+  .tool-group-grid{grid-template-columns:repeat(2,310px) !important;}
+  .tool-group.single .tool-group-grid{grid-template-columns:310px !important;}
+  .art-frame{height:420px !important;}
+}
+@media(max-width:1500px){
+  .main-inner{min-width:1240px !important;}
+}
+
+
+/* v3.10 right-dock workspace fix
+   Visual identity is frozen. This patch only corrects layout behavior:
+   - fixed left nav, centered/contained main workspace, docked right intelligence rail
+   - workspace cards scroll inside the center pane instead of running under the right rail
+   - button rows remain fully visible in windowed and full-screen modes
+*/
+:root{
+  --left-nav-width:250px;
+  --right-dock-width:330px;
+  --workspace-gap:18px;
+}
+body{overflow:hidden !important;}
+#app{
+  grid-template-columns:var(--left-nav-width) minmax(0,1fr) !important;
+  height:100vh !important;
+  overflow:hidden !important;
+}
+.sidebar{
+  width:var(--left-nav-width) !important;
+  min-width:var(--left-nav-width) !important;
+  overflow:hidden auto !important;
+}
+.main{
+  height:100vh !important;
+  overflow:auto !important;
+  padding:18px 20px 16px !important;
+}
+.main-inner{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:1920px !important;
+  margin:0 auto !important;
+}
+.hero{
+  height:clamp(185px, 13vw, 300px) !important;
+  min-height:185px !important;
+  max-height:300px !important;
+  width:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+  background:#05050b !important;
+}
+.hero img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  display:block !important;
+}
+.metrics{
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+}
+.layout{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) var(--right-dock-width) !important;
+  gap:var(--workspace-gap) !important;
+  align-items:start !important;
+  width:100% !important;
+}
+.content{
+  min-width:0 !important;
+  width:100% !important;
+  max-width:100% !important;
+  overflow:hidden !important;
+}
+.workspace-scroll{
+  width:100% !important;
+  max-width:100% !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  padding:0 0 14px 0 !important;
+  scrollbar-color:#6f2a9b #070812;
+  scrollbar-width:thin;
+}
+.workspace-scroll::-webkit-scrollbar{height:12px;}
+.workspace-scroll::-webkit-scrollbar-thumb{background:#6f2a9b;border-radius:999px;border:2px solid #070812;}
+.workspace-scroll::-webkit-scrollbar-track{background:#070812;}
+.defender-groups{
+  display:grid !important;
+  grid-template-columns:max-content max-content max-content !important;
+  gap:20px !important;
+  align-items:start !important;
+  justify-content:start !important;
+  width:max-content !important;
+  min-width:max-content !important;
+  max-width:none !important;
+  padding:0 0 4px 0 !important;
+  overflow:visible !important;
+}
+.tool-group{
+  min-width:max-content !important;
+  max-width:none !important;
+  overflow:visible !important;
+  padding:14px !important;
+}
+.tool-group-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,300px) !important;
+  gap:16px !important;
+  justify-content:start !important;
+  align-items:start !important;
+}
+.tool-group.single .tool-group-grid{grid-template-columns:300px !important;}
+.defender-card{
+  width:300px !important;
+  min-width:300px !important;
+  max-width:300px !important;
+  height:auto !important;
+  overflow:hidden !important;
+}
+.art-frame{
+  height:405px !important;
+  aspect-ratio:auto !important;
+  background:#02030a !important;
+}
+.art-frame img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+.defender-actions{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:8px !important;
+  padding:11px !important;
+  min-height:0 !important;
+}
+.primary-actions{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:8px !important;
+  width:100% !important;
+}
+.defender-actions button{
+  width:100% !important;
+  min-width:0 !important;
+  height:40px !important;
+  padding:0 9px !important;
+  font-size:12px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  line-height:1 !important;
+}
+.wide-action{height:39px !important;}
+.right-rail{
+  width:var(--right-dock-width) !important;
+  min-width:var(--right-dock-width) !important;
+  max-width:var(--right-dock-width) !important;
+  position:sticky !important;
+  top:0 !important;
+  align-self:start !important;
+  display:grid !important;
+  gap:12px !important;
+  z-index:5 !important;
+}
+.rail-card{overflow:hidden !important;}
+.dashboard-lower{
+  width:100% !important;
+  min-width:0 !important;
+  display:grid !important;
+  grid-template-columns:minmax(360px,520px) minmax(420px,1fr) minmax(320px,420px) !important;
+  gap:14px !important;
+}
+@media(max-width:1500px){
+  .main-inner{min-width:0 !important;}
+  .layout{grid-template-columns:minmax(0,1fr) 310px !important;}
+  .right-rail{width:310px !important;min-width:310px !important;max-width:310px !important;}
+  .dashboard-lower{grid-template-columns:1fr 1fr !important;}
+  .report-intel{grid-column:1 / -1 !important;}
+}
+@media(max-width:1180px){
+  #app{grid-template-columns:220px minmax(0,1fr) !important;}
+  .sidebar{width:220px !important;min-width:220px !important;}
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  .layout{grid-template-columns:1fr !important;}
+  .right-rail{
+    position:relative !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+  .dashboard-lower{grid-template-columns:1fr !important;}
+}
+@media(min-width:2200px){
+  .main-inner{max-width:1980px !important;}
+  .hero{height:300px !important;max-height:300px !important;}
+}
+
+
+/* v3.11 true three-zone layout completion
+   Visual identity remains frozen. This patch ONLY fixes workspace flow so cards never run behind the right dock.
+   Strategy: the center workspace owns its own width; tool groups wrap to new rows instead of forcing one oversized row.
+*/
+.main-inner{
+  max-width:1920px !important;
+  margin:0 auto !important;
+}
+.layout{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) var(--right-dock-width) !important;
+  gap:22px !important;
+  align-items:start !important;
+  width:100% !important;
+}
+.content{
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow:visible !important;
+}
+.workspace-scroll{
+  width:100% !important;
+  max-width:100% !important;
+  overflow-x:auto !important;
+  overflow-y:visible !important;
+  padding:0 0 18px 0 !important;
+  position:relative !important;
+}
+.defender-groups{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  align-items:flex-start !important;
+  justify-content:flex-start !important;
+  gap:20px !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow:visible !important;
+}
+.tool-group{
+  flex:0 1 auto !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow:visible !important;
+}
+.tool-group-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(275px, 300px)) !important;
+  gap:16px !important;
+  justify-content:start !important;
+  align-items:start !important;
+}
+.tool-group.single .tool-group-grid{
+  grid-template-columns:minmax(275px, 300px) !important;
+}
+.tool-group:nth-child(1){
+  flex-basis:min(100%, 646px) !important;
+}
+.tool-group:nth-child(2){
+  flex-basis:min(100%, 328px) !important;
+}
+.tool-group:nth-child(3){
+  flex-basis:min(100%, 646px) !important;
+}
+.defender-card{
+  width:100% !important;
+  min-width:275px !important;
+  max-width:300px !important;
+}
+.art-frame{
+  height:405px !important;
+}
+.right-rail{
+  position:sticky !important;
+  top:18px !important;
+  width:var(--right-dock-width) !important;
+  min-width:var(--right-dock-width) !important;
+  max-width:var(--right-dock-width) !important;
+  z-index:10 !important;
+}
+.dashboard-lower{
+  display:grid !important;
+  grid-template-columns:minmax(360px,520px) minmax(360px,1fr) !important;
+  gap:14px !important;
+  width:100% !important;
+}
+.report-intel{
+  grid-column:1 / -1 !important;
+}
+@media(max-width:1700px){
+  .tool-group-grid{grid-template-columns:repeat(2, 285px) !important;}
+  .tool-group.single .tool-group-grid{grid-template-columns:285px !important;}
+  .defender-card{min-width:285px !important;max-width:285px !important;}
+  .tool-group:nth-child(1), .tool-group:nth-child(3){flex-basis:616px !important;}
+  .tool-group:nth-child(2){flex-basis:313px !important;}
+}
+@media(max-width:1380px){
+  .layout{grid-template-columns:1fr !important;}
+  .right-rail{
+    position:relative !important;
+    top:auto !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}
+@media(max-width:980px){
+  .tool-group-grid,
+  .tool-group.single .tool-group-grid{grid-template-columns:minmax(260px, 1fr) !important;}
+  .defender-card{min-width:260px !important;max-width:100% !important;}
+  .tool-group:nth-child(1), .tool-group:nth-child(2), .tool-group:nth-child(3){flex-basis:100% !important;}
+  .dashboard-lower{grid-template-columns:1fr !important;}
+}
+
+/* v3.12 flagship workspace correction
+   Visual identity remains frozen. These rules only repair the workspace layout/buttons.
+   - Right intelligence dock is pushed to the far right of the available window.
+   - Center workspace stays inside its lane and can scroll vertically/horizontally in windowed mode.
+   - Duplicate lower Launch button is removed for local tool cards; artwork remains the launch target.
+   - Tool cards get a subtle glow/highlight without changing the flagship look.
+*/
+:root{
+  --left-nav-width:250px;
+  --right-dock-width:330px;
+  --workspace-gap:22px;
+}
+body{overflow:hidden !important;}
+#app{grid-template-columns:var(--left-nav-width) minmax(0,1fr) !important; height:100vh !important; overflow:hidden !important;}
+.sidebar{width:var(--left-nav-width) !important; min-width:var(--left-nav-width) !important;}
+.main{height:100vh !important; overflow:auto !important; padding:16px 22px 18px !important;}
+.main-inner{width:100% !important; max-width:none !important; min-width:0 !important; margin:0 !important;}
+.hero{height:clamp(185px, 12vw, 285px) !important; min-height:185px !important; max-height:285px !important; width:100% !important;}
+.hero img{width:100% !important; height:100% !important; object-fit:contain !important; object-position:center center !important;}
+.metrics{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}
+.layout{display:grid !important; grid-template-columns:minmax(0,1fr) var(--right-dock-width) !important; gap:var(--workspace-gap) !important; align-items:start !important; width:100% !important;}
+.content{min-width:0 !important; width:100% !important; max-width:100% !important; overflow:hidden !important;}
+.right-rail{width:var(--right-dock-width) !important; min-width:var(--right-dock-width) !important; max-width:var(--right-dock-width) !important; position:sticky !important; top:12px !important; align-self:start !important; z-index:10 !important;}
+.workspace-scroll{width:100% !important; max-width:100% !important; overflow:auto !important; padding:0 0 16px 0 !important; scrollbar-color:#7a2dac #080914; scrollbar-width:thin;}
+.defender-groups{display:flex !important; flex-wrap:nowrap !important; gap:22px !important; align-items:flex-start !important; justify-content:flex-start !important; width:max-content !important; min-width:max-content !important; max-width:none !important; overflow:visible !important; padding-right:12px !important;}
+.tool-group{flex:0 0 auto !important; min-width:0 !important; overflow:visible !important; padding:14px !important; border-color:rgba(177,76,255,.44) !important; box-shadow:0 0 18px rgba(177,76,255,.08) !important;}
+.tool-group-grid{display:grid !important; grid-template-columns:repeat(2,300px) !important; gap:16px !important; align-items:start !important; justify-content:start !important;}
+.tool-group.single .tool-group-grid{grid-template-columns:300px !important;}
+.defender-card{width:300px !important; min-width:300px !important; max-width:300px !important; height:auto !important; overflow:hidden !important; border-color:rgba(177,76,255,.58) !important; box-shadow:0 0 22px rgba(177,76,255,.12), inset 0 0 18px rgba(177,76,255,.04) !important; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;}
+.defender-card:hover{transform:translateY(-2px); border-color:rgba(214,132,255,.95) !important; box-shadow:0 0 30px rgba(177,76,255,.28), inset 0 0 22px rgba(177,76,255,.06) !important;}
+.art-frame{height:405px !important; aspect-ratio:auto !important; cursor:pointer !important; background:#02030a !important;}
+.art-frame img{width:100% !important; height:100% !important; object-fit:contain !important; object-position:center center !important; display:block !important;}
+.defender-actions{display:flex !important; flex-direction:column !important; gap:8px !important; padding:11px !important; background:linear-gradient(180deg,rgba(8,9,17,.98),rgba(3,4,10,.98)) !important; border-top:1px solid rgba(177,76,255,.42) !important;}
+.primary-actions{display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:8px !important; width:100% !important;}
+.primary-actions.two-actions{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+.defender-actions button{width:100% !important; min-width:0 !important; height:40px !important; padding:0 8px !important; display:flex !important; align-items:center !important; justify-content:center !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important; font-size:12px !important; font-weight:900 !important; letter-spacing:.12px !important; border-radius:8px !important;}
+.focus-link{background:linear-gradient(90deg,#3b155f,#171021) !important; border:1px solid #9b6cff !important; color:#fff !important;}
+.folder-link{background:linear-gradient(90deg,#171824,#0b0c13) !important; border:1px solid rgba(255,255,255,.36) !important; color:#fff !important;}
+.launch-pill{background:linear-gradient(90deg,#5b147d,#281138) !important; border:1px solid #c36aff !important; color:#fff !important;}
+.package-link{background:linear-gradient(90deg,#6a3d11,#281807) !important; border:1px solid #e4b85a !important; color:#fff7d6 !important;}
+.wide-action{height:38px !important; background:linear-gradient(90deg,#1c1029,#090a12) !important; border:1px solid rgba(177,76,255,.55) !important; color:#fff !important;}
+.dashboard-lower{width:100% !important; min-width:0 !important; display:grid !important; grid-template-columns:minmax(360px,520px) minmax(420px,1fr) minmax(320px,420px) !important; gap:14px !important; margin-top:18px !important;}
+@media(max-width:1650px){.layout{grid-template-columns:minmax(0,1fr) 310px !important;}.right-rail{width:310px !important;min-width:310px !important;max-width:310px !important;}.defender-card{width:285px !important;min-width:285px !important;max-width:285px !important;}.tool-group-grid{grid-template-columns:repeat(2,285px) !important;}.tool-group.single .tool-group-grid{grid-template-columns:285px !important;}.art-frame{height:385px !important;}}
+@media(max-width:1180px){#app{grid-template-columns:220px minmax(0,1fr) !important;}.sidebar{width:220px !important;min-width:220px !important;}.metrics{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}.layout{grid-template-columns:1fr !important;}.right-rail{position:relative !important;top:auto !important;width:100% !important;min-width:0 !important;max-width:none !important;display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;}.dashboard-lower{grid-template-columns:1fr !important;}}
+@media(min-width:2200px){.defender-card{width:310px !important;min-width:310px !important;max-width:310px !important;}.tool-group-grid{grid-template-columns:repeat(2,310px) !important;}.tool-group.single .tool-group-grid{grid-template-columns:310px !important;}.art-frame{height:420px !important;}.hero{height:285px !important;}}
+
+/* v3.13 Operations Intelligence Workspace Fill
+   Visual identity is frozen. This patch only uses the open dashboard real estate.
+   No tool launch mappings, scripts, or individual tool functionality are changed. */
+.workspace-command-zone{
+  display:grid !important;
+  grid-template-columns:minmax(0, max-content) minmax(420px, 1fr) !important;
+  gap:22px !important;
+  align-items:start !important;
+  width:100% !important;
+  max-width:100% !important;
+}
+.workspace-command-zone .workspace-scroll{
+  width:auto !important;
+  max-width:100% !important;
+  min-width:0 !important;
+}
+.ops-intel-panel{
+  min-width:420px;
+  max-width:none;
+  border:1px solid rgba(177,76,255,.46);
+  border-radius:14px;
+  padding:16px;
+  background:
+    radial-gradient(circle at 75% 0, rgba(177,76,255,.15), transparent 38%),
+    linear-gradient(180deg,rgba(15,17,28,.92),rgba(4,5,11,.96));
+  box-shadow:0 0 28px rgba(177,76,255,.10), inset 0 0 22px rgba(177,76,255,.04);
+  align-self:stretch;
+}
+.ops-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:12px;}
+.ops-head span{color:#d377ff;font-size:20px;line-height:1;}
+.ops-head h3{margin:0;color:#d377ff;font-size:16px;letter-spacing:.5px;}
+.ops-head small{display:block;margin-top:3px;color:#bfb1d8;font-size:12px;}
+.posture-card{border:1px solid rgba(177,76,255,.35);border-radius:12px;padding:14px;background:rgba(0,0,0,.22);margin-bottom:14px;}
+.posture-top{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.posture-top span{color:#d9cdea;font-size:13px;text-transform:uppercase;font-weight:800;letter-spacing:.4px;}
+.posture-top strong{font-size:30px;color:#58ff72;text-shadow:0 0 12px rgba(88,255,114,.25);}
+.posture-bar{height:12px;border-radius:999px;background:#090a12;border:1px solid rgba(255,255,255,.10);overflow:hidden;margin:10px 0 8px;}
+.posture-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#5f1c83,#b14cff,#58ff72);box-shadow:0 0 14px rgba(177,76,255,.35);transition:width .35s ease;}
+.posture-card small{color:#bfb1d8;font-size:12px;}
+.ops-section{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;margin-top:12px;background:rgba(255,255,255,.025);}
+.ops-section h4{margin:0 0 10px;color:#fff;font-size:13px;text-transform:uppercase;letter-spacing:.55px;}
+.ops-list{display:grid;gap:8px;}
+.ops-row{display:flex;justify-content:space-between;gap:14px;align-items:center;border-bottom:1px solid rgba(255,255,255,.065);padding:6px 0;font-size:12px;color:#d9cdea;}
+.ops-row:last-child{border-bottom:0;}
+.ops-row b{color:#fff;white-space:nowrap;}
+.ops-list.compact .ops-row{padding:5px 0;}
+.advisor-placeholder p{margin:0;color:#bfb1d8;line-height:1.45;font-size:12px;}
+@media(max-width:1850px){
+  .workspace-command-zone{grid-template-columns:1fr !important;}
+  .ops-intel-panel{min-width:0 !important;}
+}
+@media(max-width:1180px){
+  .workspace-command-zone{grid-template-columns:1fr !important;}
+}
+
+
+/* v3.14 Workspace Polish
+   Visual identity remains frozen. This patch only cleans the workspace layout/cards:
+   - removes the ugly empty-box feel by styling Operations Intelligence as a compact live panel
+   - normalizes all defender artwork/card heights, including Shadow CA
+   - makes the artwork launch strip an actual button overlay
+   - removes duplicate lower launch action for Shadow Verify; Run Local is now the artwork overlay
+   - preserves existing tool mappings and all underlying tool functionality
+*/
+:root{
+  --left-nav-width:250px;
+  --right-dock-width:330px;
+  --workspace-gap:22px;
+}
+body{overflow:hidden !important;}
+#app{grid-template-columns:var(--left-nav-width) minmax(0,1fr) !important;height:100vh !important;overflow:hidden !important;}
+.sidebar{width:var(--left-nav-width) !important;min-width:var(--left-nav-width) !important;}
+.main{height:100vh !important;overflow:auto !important;padding:16px 22px 18px !important;}
+.main-inner{width:100% !important;max-width:none !important;min-width:0 !important;margin:0 !important;}
+.hero{height:clamp(185px,12vw,285px) !important;min-height:185px !important;max-height:285px !important;width:100% !important;}
+.hero img{width:100% !important;height:100% !important;object-fit:contain !important;object-position:center center !important;}
+.metrics{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}
+.layout{display:grid !important;grid-template-columns:minmax(0,1fr) var(--right-dock-width) !important;gap:var(--workspace-gap) !important;align-items:start !important;width:100% !important;}
+.content{min-width:0 !important;width:100% !important;max-width:100% !important;overflow:hidden !important;}
+.right-rail{width:var(--right-dock-width) !important;min-width:var(--right-dock-width) !important;max-width:var(--right-dock-width) !important;position:sticky !important;top:12px !important;align-self:start !important;z-index:10 !important;}
+.workspace-command-zone{display:grid !important;grid-template-columns:minmax(0,max-content) minmax(380px,1fr) !important;gap:22px !important;align-items:start !important;width:100% !important;max-width:100% !important;}
+.workspace-scroll{width:auto !important;max-width:100% !important;overflow:auto !important;padding:0 0 16px 0 !important;scrollbar-color:#7a2dac #080914;scrollbar-width:thin;}
+.workspace-scroll::-webkit-scrollbar{height:12px;width:12px;}
+.workspace-scroll::-webkit-scrollbar-thumb{background:#7a2dac;border-radius:999px;border:2px solid #080914;}
+.workspace-scroll::-webkit-scrollbar-track{background:#080914;}
+.defender-groups{display:flex !important;flex-wrap:nowrap !important;gap:22px !important;align-items:flex-start !important;justify-content:flex-start !important;width:max-content !important;min-width:max-content !important;max-width:none !important;overflow:visible !important;padding-right:8px !important;}
+.tool-group{flex:0 0 auto !important;min-width:0 !important;overflow:visible !important;padding:14px !important;border-color:rgba(177,76,255,.44) !important;box-shadow:0 0 20px rgba(177,76,255,.10), inset 0 0 20px rgba(177,76,255,.025) !important;}
+.tool-group-header{padding-bottom:10px !important;margin-bottom:12px !important;}
+.tool-group-grid{display:grid !important;grid-template-columns:repeat(2,292px) !important;gap:16px !important;align-items:start !important;justify-content:start !important;}
+.tool-group.single .tool-group-grid{grid-template-columns:292px !important;}
+.defender-card{width:292px !important;min-width:292px !important;max-width:292px !important;height:auto !important;overflow:hidden !important;border-color:rgba(177,76,255,.58) !important;box-shadow:0 0 22px rgba(177,76,255,.12), inset 0 0 18px rgba(177,76,255,.04) !important;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;}
+.defender-card:hover{transform:translateY(-2px);border-color:rgba(214,132,255,.95) !important;box-shadow:0 0 30px rgba(177,76,255,.28), inset 0 0 22px rgba(177,76,255,.06) !important;}
+.art-frame{position:relative !important;height:392px !important;aspect-ratio:auto !important;cursor:pointer !important;background:#02030a !important;display:block !important;overflow:hidden !important;}
+.art-frame img{width:100% !important;height:100% !important;object-fit:contain !important;object-position:center center !important;display:block !important;}
+.art-launch-overlay{position:absolute;left:12px;right:12px;bottom:12px;height:34px;border-radius:8px;border:1px solid rgba(177,76,255,.78);background:linear-gradient(90deg,rgba(68,16,99,.94),rgba(21,13,31,.94));color:#fff;font-size:11px;font-weight:900;letter-spacing:.35px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 16px rgba(177,76,255,.24);backdrop-filter:blur(2px);}
+.tool-mde .art-launch-overlay{border-color:rgba(69,194,255,.82);background:linear-gradient(90deg,rgba(8,49,81,.94),rgba(7,12,22,.94));color:#bfeeff;}
+.tool-dfo365 .art-launch-overlay{border-color:rgba(255,65,85,.82);background:linear-gradient(90deg,rgba(90,16,18,.94),rgba(15,8,11,.94));color:#ffbfc8;}
+.tool-verify .art-launch-overlay{border-color:rgba(204,110,255,.86);background:linear-gradient(90deg,rgba(75,19,112,.95),rgba(20,10,32,.95));color:#fff;}
+.tool-traceops .art-launch-overlay{border-color:rgba(40,230,255,.78);background:linear-gradient(90deg,rgba(5,70,84,.94),rgba(5,15,22,.94));color:#c7fbff;}
+.tool-ca .art-launch-overlay{border-color:rgba(255,202,58,.72);background:linear-gradient(90deg,rgba(90,58,0,.86),rgba(17,11,3,.92));color:#ffdc69;}
+.art-launch-overlay:hover{filter:brightness(1.14);box-shadow:0 0 22px rgba(177,76,255,.38);}
+.art-launch-overlay.disabled-overlay{cursor:not-allowed;opacity:.82;}
+.defender-actions{display:flex !important;flex-direction:column !important;gap:8px !important;padding:11px !important;background:linear-gradient(180deg,rgba(8,9,17,.98),rgba(3,4,10,.98)) !important;border-top:1px solid rgba(177,76,255,.42) !important;}
+.primary-actions{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:8px !important;width:100% !important;}
+.primary-actions.two-actions{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+.defender-actions button{width:100% !important;min-width:0 !important;height:38px !important;padding:0 8px !important;display:flex !important;align-items:center !important;justify-content:center !important;white-space:nowrap !important;overflow:hidden !important;text-overflow:ellipsis !important;font-size:11px !important;font-weight:900 !important;letter-spacing:.1px !important;border-radius:8px !important;}
+.focus-link{background:linear-gradient(90deg,#3b155f,#171021) !important;border:1px solid #9b6cff !important;color:#fff !important;}
+.folder-link{background:linear-gradient(90deg,#171824,#0b0c13) !important;border:1px solid rgba(255,255,255,.36) !important;color:#fff !important;}
+.package-link{background:linear-gradient(90deg,#6a3d11,#281807) !important;border:1px solid #e4b85a !important;color:#fff7d6 !important;}
+.wide-action{height:37px !important;background:linear-gradient(90deg,#1c1029,#090a12) !important;border:1px solid rgba(177,76,255,.55) !important;color:#fff !important;}
+.disabled-action,.wide-action.disabled{background:linear-gradient(90deg,#3a1012,#160708) !important;border:1px solid rgba(255,49,95,.35) !important;color:#ff8b9e !important;cursor:not-allowed !important;}
+.ops-intel-panel{min-width:380px !important;max-width:none !important;align-self:stretch !important;border:1px solid rgba(177,76,255,.44) !important;border-radius:14px !important;padding:16px !important;background:radial-gradient(circle at 70% 0,rgba(177,76,255,.16),transparent 38%),linear-gradient(180deg,rgba(15,17,28,.92),rgba(4,5,11,.96)) !important;box-shadow:0 0 28px rgba(177,76,255,.10), inset 0 0 22px rgba(177,76,255,.04) !important;}
+.dashboard-lower{width:100% !important;min-width:0 !important;display:grid !important;grid-template-columns:minmax(360px,520px) minmax(420px,1fr) minmax(320px,420px) !important;gap:14px !important;margin-top:18px !important;}
+@media(max-width:1850px){.workspace-command-zone{grid-template-columns:1fr !important;}.ops-intel-panel{min-width:0 !important;}.defender-groups{width:max-content !important;min-width:max-content !important;}}
+@media(max-width:1650px){.layout{grid-template-columns:minmax(0,1fr) 310px !important;}.right-rail{width:310px !important;min-width:310px !important;max-width:310px !important;}.defender-card{width:280px !important;min-width:280px !important;max-width:280px !important;}.tool-group-grid{grid-template-columns:repeat(2,280px) !important;}.tool-group.single .tool-group-grid{grid-template-columns:280px !important;}.art-frame{height:376px !important;}}
+@media(max-width:1180px){#app{grid-template-columns:220px minmax(0,1fr) !important;}.sidebar{width:220px !important;min-width:220px !important;}.metrics{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}.layout{grid-template-columns:1fr !important;}.right-rail{position:relative !important;top:auto !important;width:100% !important;min-width:0 !important;max-width:none !important;display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;}.dashboard-lower{grid-template-columns:1fr !important;}}
+@media(min-width:2200px){.defender-card{width:300px !important;min-width:300px !important;max-width:300px !important;}.tool-group-grid{grid-template-columns:repeat(2,300px) !important;}.tool-group.single .tool-group-grid{grid-template-columns:300px !important;}.art-frame{height:405px !important;}.hero{height:285px !important;}}
+
+/* v3.15 Button Overlap Fix
+   Visual identity remains frozen. This patch removes the visible launch button overlay
+   from the artwork while preserving artwork click-to-launch behavior and all tool mappings. */
+.art-launch-overlay{display:none !important;}
+.art-frame{position:relative !important; cursor:pointer !important;}
+.art-frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 72%,rgba(5,6,12,.28));
+  opacity:.65;
+}
+.art-frame:hover::after{
+  background:linear-gradient(180deg,rgba(177,76,255,.05),rgba(177,76,255,.18));
+  box-shadow:inset 0 0 28px rgba(177,76,255,.16);
+}
+.art-launch-hint{
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:10px;
+  z-index:2;
+  border:1px solid rgba(177,76,255,.35);
+  border-radius:8px;
+  background:rgba(4,5,11,.72);
+  color:#dbc6ef;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.2px;
+  text-transform:uppercase;
+  text-align:center;
+  padding:7px 6px;
+  pointer-events:none;
+  opacity:.82;
+  backdrop-filter:blur(2px);
+}
+.defender-card:hover .art-launch-hint{
+  border-color:rgba(214,132,255,.72);
+  color:#fff;
+  background:rgba(33,12,52,.78);
+}
+.tool-ca .art-frame{cursor:default !important;}
+.tool-ca .art-launch-hint{color:#ffdc69;border-color:rgba(255,202,58,.35);}
+
+
+/* v3.16 Clean Panel Actions
+   The generated panel artwork has been cropped to remove baked-in launch buttons.
+   Keep artwork click-to-launch behavior, but display all actions as real HTML buttons below. */
+.art-launch-overlay,
+.art-launch-hint{display:none !important;}
+.art-frame::after{display:none !important;content:none !important;}
+.art-frame{cursor:pointer !important;}
+.tool-ca .art-frame{cursor:default !important;}
+.art-frame img{object-fit:contain !important;object-position:center center !important;}
+
+
+/* v3.20 Knights Briefing Layout
+   Surgical UI update: use the top-left open space for report intelligence while preserving
+   the frozen Shadow Throne banner, defender cards, buttons, right rail, and launch behavior. */
+.top-command-row{
+  display:grid !important;
+  grid-template-columns:minmax(330px,420px) minmax(720px,1fr) !important;
+  gap:14px !important;
+  align-items:stretch !important;
+  width:100% !important;
+  margin:0 0 12px 0 !important;
+}
+.knights-briefing{
+  border:1px solid rgba(177,76,255,.48) !important;
+  border-radius:10px !important;
+  background:linear-gradient(180deg,rgba(18,15,31,.94),rgba(4,5,11,.98)) !important;
+  box-shadow:inset 0 0 22px rgba(177,76,255,.06),0 0 18px rgba(0,0,0,.35) !important;
+  padding:14px !important;
+  min-height:185px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:10px !important;
+  overflow:hidden !important;
+}
+.briefing-head{display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:9px;}
+.briefing-head span{color:#d377ff;font-size:18px;filter:drop-shadow(0 0 10px rgba(177,76,255,.65));}
+.briefing-head h3{margin:0;color:#d377ff;font-size:14px;letter-spacing:.5px;text-transform:uppercase;}
+.briefing-head small{display:block;color:#c8badf;font-size:11px;margin-top:2px;}
+.knights-list{display:grid;gap:6px;min-height:0;overflow:auto;padding-right:3px;scrollbar-color:#6f2a9b #070812;scrollbar-width:thin;}
+.knight-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.06);border-radius:8px;background:rgba(0,0,0,.17);padding:7px 8px;font-size:11px;}
+.knight-row span{color:#eee8ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.knight-row small{display:block;color:#a998bf;font-size:10px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.knight-row b{color:#58ff72;font-size:11px;white-space:nowrap;text-align:right;}
+.knight-row.pending b{color:#ffca3a;}
+.knight-row.review b{color:#ffca3a;}
+.knight-row.empty b{color:#c8badf;}
+.briefing-action{margin-top:auto;border:1px solid #7c32b8;background:linear-gradient(90deg,#3a1455,#1b1127);color:#fff;border-radius:8px;padding:9px 12px;font-weight:900;cursor:pointer;font-size:11px;}
+.briefing-action:hover{border-color:#d476ff;box-shadow:0 0 14px rgba(177,76,255,.24);}
+/* Keep the banner fully visible and slightly prominent without creating empty side boxes. */
+.top-command-row .hero{
+  height:clamp(185px,11vw,245px) !important;
+  min-height:185px !important;
+  max-height:245px !important;
+  margin:0 !important;
+  width:100% !important;
+}
+.top-command-row .hero img{object-fit:contain !important;object-position:center center !important;}
+@media(max-width:1450px){
+  .top-command-row{grid-template-columns:1fr !important;}
+  .knights-briefing{min-height:150px !important;}
+  .top-command-row .hero{height:clamp(165px,14vw,220px) !important;}
+}
+@media(min-width:2200px){
+  .top-command-row{grid-template-columns:440px minmax(900px,1fr) !important;}
+  .top-command-row .hero{height:245px !important;}
+}
+
+
+/* v3.21 Compact Status Lift
+   Surgical layout update requested after v3.20:
+   - Keep the Knights Table and banner in the top command row.
+   - Shrink the tool status metrics bar.
+   - Pull the metrics directly under the banner/briefing area.
+   - Move the workspace content up by tightening vertical spacing.
+   - Do not alter defender cards, buttons, mappings, or tool behavior. */
+.top-command-row{
+  margin-bottom:6px !important;
+  align-items:stretch !important;
+}
+.top-command-row .hero{
+  height:clamp(170px,10vw,220px) !important;
+  min-height:170px !important;
+  max-height:220px !important;
+}
+.knights-briefing{
+  min-height:170px !important;
+  padding:12px !important;
+  gap:8px !important;
+}
+.briefing-head{
+  padding-bottom:7px !important;
+}
+.knight-row{
+  padding:5px 7px !important;
+  font-size:10.5px !important;
+}
+.briefing-action{
+  padding:7px 10px !important;
+}
+.metrics{
+  margin:6px 0 10px 0 !important;
+  gap:10px !important;
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+}
+.metric{
+  min-height:58px !important;
+  padding:10px 14px !important;
+  border-radius:10px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  align-items:center !important;
+}
+.metric span{
+  font-size:10px !important;
+  line-height:1.1 !important;
+}
+.metric strong{
+  font-size:23px !important;
+  line-height:1.05 !important;
+  margin:3px 0 2px 0 !important;
+}
+.metric small{
+  font-size:10px !important;
+  line-height:1.15 !important;
+  max-width:100% !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+.section-title{
+  margin:0 0 8px !important;
+}
+.section-title h2{
+  font-size:17px !important;
+}
+.section-title p{
+  margin-top:2px !important;
+}
+.tool-groups{
+  margin-top:6px !important;
+}
+.layout{
+  gap:14px !important;
+}
+.operations-panel{
+  margin-top:12px !important;
+}
+.dashboard-lower{
+  margin-top:12px !important;
+}
+@media(max-width:1450px){
+  .top-command-row .hero{height:clamp(155px,13vw,200px) !important;min-height:155px !important;}
+  .knights-briefing{min-height:145px !important;}
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+@media(min-width:2200px){
+  .top-command-row .hero{height:220px !important;max-height:220px !important;}
+  .knights-briefing{min-height:220px !important;}
+  .metric{min-height:62px !important;}
+}
+
+
+/* v3.22 Top Status Stack Fix
+   Moves the compact status bar into the banner column, directly under the hero,
+   instead of leaving it as a full-width separator across the workspace. */
+.top-command-row{
+  display:grid !important;
+  grid-template-columns:minmax(330px,420px) minmax(760px,1fr) !important;
+  gap:14px !important;
+  align-items:start !important;
+  margin:0 0 8px 0 !important;
+}
+.hero-status-stack{
+  display:grid !important;
+  grid-template-rows:auto auto !important;
+  gap:8px !important;
+  min-width:0 !important;
+}
+.hero-status-stack .hero{
+  width:100% !important;
+  margin:0 !important;
+  height:clamp(155px,8.6vw,205px) !important;
+  min-height:155px !important;
+  max-height:205px !important;
+}
+.hero-status-stack .hero img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+.hero-status-stack .metrics{
+  margin:0 !important;
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:8px !important;
+}
+.hero-status-stack .metric{
+  min-height:50px !important;
+  padding:7px 10px !important;
+  border-radius:9px !important;
+}
+.hero-status-stack .metric span{font-size:9px !important;}
+.hero-status-stack .metric strong{font-size:20px !important;margin:1px 0 !important;}
+.hero-status-stack .metric small{font-size:9px !important;}
+.knights-briefing{
+  min-height:0 !important;
+  height:100% !important;
+  max-height:calc(205px + 58px + 8px) !important;
+}
+.section-title{
+  margin-top:4px !important;
+}
+.layout{
+  margin-top:0 !important;
+}
+@media(max-width:1450px){
+  .top-command-row{grid-template-columns:1fr !important;}
+  .hero-status-stack .hero{height:clamp(145px,13vw,190px) !important;min-height:145px !important;}
+  .hero-status-stack .metrics{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  .knights-briefing{max-height:none !important;}
+}
+@media(min-width:2200px){
+  .hero-status-stack .hero{height:205px !important;max-height:205px !important;}
+}
+
+
+/* v3.23 Layout Align Cards
+   Surgical UI-only fix:
+   - Keep Knights Table at top-left and banner at top-right.
+   - Compact the top row and keep banner fully visible.
+   - Remove the Shadow Defenders heading/subtitle text.
+   - Pull workspace cards up so they align with Operations Intelligence and the right rail.
+   - No launch mappings, buttons, JS actions, or tool behavior changed. */
+.top-command-row{
+  display:grid !important;
+  grid-template-columns:minmax(360px,430px) minmax(860px,1fr) !important;
+  gap:12px !important;
+  align-items:start !important;
+  margin:0 0 6px 0 !important;
+}
+.knights-briefing{
+  width:100% !important;
+  min-height:0 !important;
+  max-height:248px !important;
+  padding:12px !important;
+  overflow:hidden !important;
+}
+.knights-list{
+  overflow:hidden !important;
+}
+.hero-status-stack{
+  display:grid !important;
+  grid-template-rows:auto auto !important;
+  gap:7px !important;
+  min-width:0 !important;
+}
+.hero-status-stack .hero{
+  height:clamp(158px,8.3vw,198px) !important;
+  min-height:158px !important;
+  max-height:198px !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  background:#05050b !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+.hero-status-stack .hero img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+.hero-status-stack .metrics{
+  margin:0 !important;
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:8px !important;
+}
+.hero-status-stack .metric{
+  min-height:48px !important;
+  padding:7px 10px !important;
+  border-radius:9px !important;
+}
+.hero-status-stack .metric span{font-size:9px !important;line-height:1 !important;}
+.hero-status-stack .metric strong{font-size:19px !important;line-height:1.05 !important;margin:1px 0 !important;}
+.hero-status-stack .metric small{font-size:9px !important;line-height:1.1 !important;}
+#view-dashboard > .section-title{
+  display:none !important;
+}
+#view-dashboard .workspace-command-zone{
+  margin-top:0 !important;
+  padding-top:0 !important;
+  align-items:start !important;
+}
+#view-dashboard .workspace-scroll{
+  padding-top:0 !important;
+}
+#view-dashboard .defender-groups{
+  margin-top:0 !important;
+  padding-top:0 !important;
+}
+#view-dashboard .ops-intel-panel{
+  margin-top:0 !important;
+}
+.layout{
+  margin-top:0 !important;
+  align-items:start !important;
+}
+.content{
+  padding-top:0 !important;
+}
+.right-rail{
+  margin-top:0 !important;
+}
+@media(max-width:1450px){
+  .top-command-row{grid-template-columns:1fr !important;}
+  .knights-briefing{max-height:none !important;}
+  .hero-status-stack .hero{height:clamp(145px,13vw,190px) !important;min-height:145px !important;}
+  .hero-status-stack .metrics{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+@media(min-width:2200px){
+  .top-command-row{grid-template-columns:minmax(390px,460px) minmax(1000px,1fr) !important;}
+  .hero-status-stack .hero{height:205px !important;max-height:205px !important;}
+}
+
+
+/* v3.24 Command Intelligence Polish
+   Small quality pass only: keep frozen identity, cards, buttons, mappings, and structure intact. */
+.briefing-head h3{letter-spacing:.6px;}
+.knights-briefing{background:linear-gradient(180deg,rgba(17,10,28,.95),rgba(5,6,12,.96)) !important;box-shadow:0 0 22px rgba(177,76,255,.08), inset 0 0 34px rgba(177,76,255,.035) !important;}
+.knights-list{display:flex;flex-direction:column;gap:6px;}
+.knight-row{display:grid !important;grid-template-columns:minmax(0,1fr) auto !important;align-items:center !important;gap:12px !important;padding:8px 9px !important;border-radius:8px !important;background:rgba(255,255,255,.018) !important;border:1px solid rgba(177,76,255,.08) !important;}
+.knight-row:hover{border-color:rgba(177,76,255,.28) !important;background:rgba(177,76,255,.055) !important;}
+.knight-title{display:flex !important;align-items:center !important;gap:8px !important;min-width:0 !important;}
+.knight-title i{font-style:normal;color:#c86aff;filter:drop-shadow(0 0 6px rgba(177,76,255,.45));width:18px;text-align:center;}
+.knight-title em{font-style:normal;min-width:0;display:grid;gap:1px;}
+.knight-title bdi{font-size:12px;color:#fff;font-weight:900;}
+.knight-title small{font-size:10px;color:#bfb1d8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px;display:block;}
+.knight-row b{font-size:10px;color:#58ff72;white-space:nowrap;}
+.knight-row.empty b{color:#cdb6e9;}
+.knight-row.pending b{color:#ffca3a;}
+.briefing-action{height:34px !important;margin-top:8px !important;}
+
+.hero-status-stack{gap:10px !important;}
+.metrics{height:72px !important;min-height:72px !important;}
+.metric{padding:10px 12px !important;}
+.metric strong{font-size:24px !important;line-height:1.05 !important;}
+.metric span{font-size:10px !important;}
+.metric small{font-size:10px !important;}
+
+.workspace-command-zone{align-items:start !important;}
+.ops-intel-panel{background:linear-gradient(180deg,rgba(17,10,28,.96),rgba(5,6,12,.98)) !important;box-shadow:0 0 24px rgba(177,76,255,.08), inset 0 0 48px rgba(177,76,255,.035) !important;}
+.ops-head h3,.panel h3{letter-spacing:.55px;}
+.ops-section h4,.posture-top span{text-transform:uppercase;letter-spacing:.4px;}
+.ops-row{min-height:28px !important;}
+
+.latest-report-mini{display:grid;gap:8px;margin:10px 0 12px;}
+.latest-report-mini>span{color:#bfb1d8;font-size:12px;}
+.latest-report-row{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 10px;border:1px solid rgba(177,76,255,.14);border-radius:8px;background:rgba(177,76,255,.035);}
+.latest-report-row b{font-size:12px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.latest-report-row small{font-size:11px;color:#cdb6e9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.latest-report-row strong{font-size:10px;color:#58ff72;white-space:nowrap;}
+.report-intel p{margin-bottom:8px !important;}
+
+.dashboard-lower{margin-top:14px !important;}
+.panel{box-shadow:0 0 18px rgba(177,76,255,.045) !important;}
+
+@media(max-width:1500px){
+  .latest-report-row{grid-template-columns:1fr auto;}
+  .latest-report-row small{grid-column:1/-1;}
+}
+
+
+/* v3.25 Shadow Intelligence Engine: evidence/attention refinements only */
+.knight-row.critical b,.ops-row b.critical{color:#ff5757 !important;}
+.knight-row.high b,.ops-row b.high{color:#ff944d !important;}
+.knight-row.review b,.ops-row b.review{color:#ffca3a !important;}
+.knight-row.healthy b,.ops-row b.healthy{color:#58ff72 !important;}
+.knight-row.unknown b{color:#cdb6e9 !important;}
+.file-row span b::before{content:'♜ ';color:#c86aff;}
+.advisor-placeholder p{font-size:12px;line-height:1.45;color:#d8c8f1;}
+
+
+/* v3.27 Kingdom Reports Page Overhaul
+   Reporting page only. Dashboard, cards, launches, mappings, and locked art remain unchanged. */
+body[data-view="reports"] .layout{
+  grid-template-columns:1fr !important;
+}
+body[data-view="reports"] .right-rail{
+  display:none !important;
+}
+body[data-view="reports"] .content{
+  width:100% !important;
+}
+.report-page-view{
+  min-height:calc(100vh - 80px);
+}
+.kingdom-reports-page{
+  position:relative;
+  min-height:calc(100vh - 120px);
+  border:1px solid rgba(177,76,255,.28);
+  border-radius:10px;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(4,5,10,.96),rgba(6,4,10,.88) 34%,rgba(5,6,12,.94)),
+    url('/assets/reports/kingdom_reports_background.png');
+  background-size:cover;
+  background-position:center;
+  box-shadow:inset 0 0 90px rgba(0,0,0,.8),0 0 26px rgba(177,76,255,.08);
+}
+.kingdom-reports-page:before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 52% 35%,rgba(177,76,255,.10),transparent 38%),linear-gradient(180deg,rgba(0,0,0,.20),rgba(0,0,0,.76));
+  pointer-events:none;
+}
+.reports-hero-strip,
+.kingdom-reports-grid{
+  position:relative;z-index:1;
+}
+.reports-hero-strip{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+  padding:24px 28px 16px;
+  border-bottom:1px solid rgba(177,76,255,.22);
+  background:linear-gradient(90deg,rgba(8,8,13,.86),rgba(18,10,28,.46),rgba(8,8,13,.75));
+}
+.reports-hero-strip h1{
+  margin:0;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:34px;
+  line-height:1;
+  color:#f6f1ff;
+  letter-spacing:.5px;
+  text-shadow:0 0 18px rgba(177,76,255,.35);
+}
+.reports-hero-strip p{margin:8px 0 0;color:#bfb1d8;font-size:14px;}
+.report-filter-row{display:flex;gap:12px;align-items:center;}
+.report-filter-row select,.small-report-button{
+  border:1px solid rgba(177,76,255,.35);
+  background:rgba(0,0,0,.42);
+  color:#f5ecff;
+  border-radius:8px;
+  padding:10px 14px;
+  min-width:160px;
+  font-weight:700;
+}
+.small-report-button{min-width:130px;cursor:pointer;background:linear-gradient(90deg,#321044,#12091b);}
+.kingdom-reports-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 330px;
+  gap:22px;
+  padding:18px 20px 20px;
+  align-items:start;
+}
+.report-council-board{
+  min-height:720px;
+  position:relative;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:10px;
+  padding:18px;
+  background:linear-gradient(180deg,rgba(5,6,12,.32),rgba(3,4,8,.72));
+  box-shadow:inset 0 0 65px rgba(0,0,0,.52);
+}
+.knight-report-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(260px,1fr));
+  gap:18px;
+  align-items:start;
+}
+.knight-report-card{
+  border:1px solid rgba(177,76,255,.22);
+  border-radius:10px;
+  overflow:hidden;
+  background:linear-gradient(180deg,rgba(7,8,13,.92),rgba(1,2,6,.96));
+  box-shadow:0 0 22px rgba(0,0,0,.45),inset 0 0 24px rgba(255,255,255,.02);
+  min-height:376px;
+}
+.knight-report-card.red{border-color:rgba(255,70,90,.34)}
+.knight-report-card.blue{border-color:rgba(58,158,255,.34)}
+.knight-report-card.purple{border-color:rgba(185,85,255,.34)}
+.knight-report-card.green{border-color:rgba(91,255,126,.28)}
+.knight-report-card.silver{border-color:rgba(190,190,210,.22);filter:saturate(.88)}
+.report-art{
+  height:210px;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+  overflow:hidden;
+}
+.report-art:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.08) 55%,rgba(0,0,0,.84));}
+.report-art-shade{position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.08),transparent 40%);z-index:1;}
+.report-card-title{position:absolute;left:18px;top:16px;display:flex;gap:12px;align-items:flex-start;z-index:2;}
+.report-card-title h3{margin:0;font-family:Georgia,'Times New Roman',serif;color:#d889ff;font-size:18px;letter-spacing:.6px;text-transform:uppercase;}
+.report-card-title small{display:block;color:#f3eefc;font-size:12px;margin-top:4px;}
+.report-shield{font-size:28px;color:#b14cff;filter:drop-shadow(0 0 8px rgba(177,76,255,.5));}
+.report-badge{position:absolute;left:18px;bottom:14px;z-index:3;border:1px solid rgba(255,255,255,.18);border-radius:6px;padding:5px 12px;font-weight:900;font-size:11px;text-transform:uppercase;background:rgba(0,0,0,.55);}
+.report-badge.healthy{color:#58ff72;border-color:rgba(88,255,114,.28);background:rgba(18,80,31,.35)}
+.report-badge.review{color:#ffca3a;border-color:rgba(255,202,58,.34);background:rgba(100,67,0,.35)}
+.report-badge.high{color:#ff944d;border-color:rgba(255,148,77,.34);background:rgba(111,45,0,.35)}
+.report-badge.critical{color:#ff5757;border-color:rgba(255,87,87,.34);background:rgba(105,0,10,.35)}
+.report-badge.pending,.report-badge.unknown{color:#c5c0ce;border-color:rgba(255,255,255,.16);background:rgba(90,90,105,.22)}
+.report-card-body{padding:14px 16px 16px;background:linear-gradient(180deg,rgba(5,6,12,.90),rgba(2,3,7,.98));}
+.report-meta-grid{display:grid;grid-template-columns:1.25fr 1fr .65fr;border-bottom:1px solid rgba(255,255,255,.08);border-top:1px solid rgba(255,255,255,.05);margin-bottom:12px;}
+.report-meta-grid div{padding:9px 10px;border-right:1px solid rgba(255,255,255,.07);}
+.report-meta-grid div:last-child{border-right:0;}
+.report-meta-grid span{display:block;color:#8f879d;text-transform:uppercase;font-size:10px;margin-bottom:4px;}
+.report-meta-grid b{color:#f4efff;font-size:12px;font-weight:700;}
+.report-meta-grid b.healthy{color:#58ff72}.report-meta-grid b.review{color:#ffca3a}.report-meta-grid b.high{color:#ff944d}.report-meta-grid b.critical{color:#ff5757}.report-meta-grid b.pending,.report-meta-grid b.unknown{color:#c5c0ce}
+.findings-block span{display:block;color:#8f879d;text-transform:uppercase;font-size:11px;margin-bottom:6px;}
+.findings-block ul{margin:0 0 13px 17px;padding:0;color:#e8dfef;font-size:12px;line-height:1.45;min-height:52px;}
+.view-report-button{
+  width:100%;
+  border:1px solid rgba(177,76,255,.38);
+  background:linear-gradient(90deg,rgba(58,15,82,.72),rgba(16,12,24,.82));
+  color:#fff;
+  border-radius:7px;
+  padding:11px 12px;
+  font-family:Georgia,'Times New Roman',serif;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:flex;justify-content:center;align-items:center;gap:12px;
+}
+.view-report-button:disabled{opacity:.5;cursor:not-allowed;}
+.knight-report-card.red .view-report-button{border-color:rgba(255,73,73,.34);background:linear-gradient(90deg,rgba(90,15,16,.72),rgba(16,12,24,.82));}
+.knight-report-card.blue .view-report-button{border-color:rgba(55,148,255,.34);background:linear-gradient(90deg,rgba(7,46,91,.72),rgba(16,12,24,.82));}
+.knight-report-card.green .view-report-button{border-color:rgba(58,255,114,.28);background:linear-gradient(90deg,rgba(6,72,24,.62),rgba(16,12,24,.82));}
+.reports-quote{text-align:center;color:#b14cff;font-family:Georgia,'Times New Roman',serif;font-size:16px;margin:14px 0 0;letter-spacing:.35px;}
+.reports-quote span{color:#77707f;}
+.reports-command-rail{display:grid;gap:14px;}
+.report-side-card{border:1px solid rgba(255,255,255,.10);border-radius:10px;padding:16px;background:linear-gradient(180deg,rgba(6,7,12,.86),rgba(2,3,7,.96));box-shadow:inset 0 0 30px rgba(177,76,255,.035);}
+.report-side-card h3{font-family:Georgia,'Times New Roman',serif;margin:0 0 14px;color:#f6f1ff;font-size:20px;letter-spacing:.4px;}
+.summary-list,.report-stats,.attention-list{display:grid;gap:8px;}
+.summary-list div,.report-stats div{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:8px 10px;border:1px solid rgba(255,255,255,.055);border-radius:7px;background:rgba(255,255,255,.025);color:#e9e2f3;}
+.report-stats div{grid-template-columns:1fr auto;}
+.summary-list b,.report-stats b{color:#fff;}
+.green-dot{background:#58ff72!important}.review-dot{background:#ffca3a!important}.high-dot{background:#ff944d!important}.critical-dot{background:#ff5757!important}
+.attention-item{display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);color:#eee;}
+.attention-item:last-child{border-bottom:0;}
+.attention-item span{width:9px;height:9px;border-radius:50%;background:#ff944d;box-shadow:0 0 10px rgba(255,148,77,.7);margin-top:5px;}
+.attention-item b{font-size:13px;line-height:1.35;font-weight:600;}
+.library-card p{color:#cfc3e6;line-height:1.45;margin:0 0 14px;}
+.library-card button{width:100%;border:1px solid rgba(177,76,255,.38);background:linear-gradient(90deg,#351049,#120916);color:#fff;border-radius:8px;padding:12px;font-family:Georgia,'Times New Roman',serif;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+.report-loading{grid-column:1/-1;border:1px solid rgba(177,76,255,.2);border-radius:10px;padding:30px;color:#cfc3e6;text-align:center;background:rgba(0,0,0,.35);}
+@media(max-width:1700px){.kingdom-reports-grid{grid-template-columns:1fr 300px}.knight-report-grid{grid-template-columns:repeat(2,minmax(260px,1fr));}.report-art{height:190px}}
+@media(max-width:1250px){.kingdom-reports-grid{grid-template-columns:1fr}.reports-command-rail{grid-template-columns:repeat(2,minmax(0,1fr));}.knight-report-grid{grid-template-columns:1fr}.reports-hero-strip{display:grid}.report-filter-row{justify-content:start}}
+
+
+/* v3.28 Kingdom Reports Polish
+   REPORTS PAGE ONLY. Main dashboard, launch cards, mappings, and locked art are unchanged. */
+body[data-view="reports"] .top-command-row{
+  grid-template-columns:280px minmax(0,1fr) !important;
+  gap:14px !important;
+  align-items:start !important;
+}
+body[data-view="reports"] .hero-status-stack .hero{
+  height:128px !important;
+  min-height:128px !important;
+  overflow:hidden !important;
+}
+body[data-view="reports"] .hero-status-stack .hero img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+}
+body[data-view="reports"] .metrics{
+  height:58px !important;
+  min-height:58px !important;
+}
+body[data-view="reports"] .metric{padding:7px 10px !important;}
+body[data-view="reports"] .metric strong{font-size:18px !important;}
+body[data-view="reports"] .metric span,
+body[data-view="reports"] .metric small{font-size:9px !important;}
+
+/* keep report page in the locked shell but give it its own council chamber */
+body[data-view="reports"] .layout{grid-template-columns:1fr !important;}
+body[data-view="reports"] .right-rail{display:none !important;}
+body[data-view="reports"] .content{width:100% !important;}
+body[data-view="reports"] .dashboard-lower{display:none !important;}
+.report-page-view{min-height:calc(100vh - 86px);}
+.kingdom-reports-page{
+  position:relative;
+  min-height:calc(100vh - 220px);
+  border:1px solid rgba(177,76,255,.28);
+  border-radius:10px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 62% 38%,rgba(177,76,255,.13),transparent 28%),
+    linear-gradient(90deg,rgba(3,4,8,.97),rgba(5,5,10,.78) 45%,rgba(4,5,9,.95)),
+    url('/assets/reports/kingdom_reports_background.png');
+  background-size:cover;
+  background-position:center;
+  box-shadow:inset 0 0 100px rgba(0,0,0,.78),0 0 26px rgba(177,76,255,.08);
+}
+.kingdom-reports-page:before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.76)),
+    radial-gradient(circle at 25% 18%,rgba(185,75,255,.12),transparent 32%);
+  pointer-events:none;
+}
+.reports-hero-strip{
+  position:relative;z-index:1;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+  padding:20px 24px 14px;
+  border-bottom:1px solid rgba(177,76,255,.22);
+  background:linear-gradient(90deg,rgba(4,5,10,.90),rgba(19,10,30,.38),rgba(4,5,10,.76));
+}
+.reports-hero-strip h1{
+  margin:0;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:31px;
+  line-height:1;
+  color:#f6f1ff;
+  letter-spacing:.5px;
+  text-shadow:0 0 18px rgba(177,76,255,.35);
+}
+.reports-hero-strip p{margin:7px 0 0;color:#bfb1d8;font-size:13px;max-width:860px;}
+.report-filter-row{display:flex;gap:10px;align-items:center;}
+.report-filter-row select,.small-report-button{
+  border:1px solid rgba(177,76,255,.35);
+  background:rgba(0,0,0,.46);
+  color:#f5ecff;
+  border-radius:8px;
+  padding:9px 13px;
+  min-width:150px;
+  font-weight:700;
+}
+.small-report-button{min-width:122px;cursor:pointer;background:linear-gradient(90deg,#321044,#12091b);}
+.kingdom-reports-grid{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 318px;
+  gap:18px;
+  padding:18px 20px 18px;
+  align-items:start;
+}
+.report-council-board{
+  min-height:690px;
+  position:relative;
+  border:1px solid rgba(255,255,255,.085);
+  border-radius:10px;
+  padding:18px;
+  background:linear-gradient(180deg,rgba(5,6,12,.26),rgba(3,4,8,.70));
+  box-shadow:inset 0 0 65px rgba(0,0,0,.48);
+  overflow:hidden;
+}
+.report-council-board:after{
+  content:'';
+  position:absolute;inset:auto 0 0 0;height:180px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.42));
+  pointer-events:none;
+}
+.knight-report-grid{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(300px, 380px));
+  gap:18px;
+  align-items:start;
+  justify-content:start;
+}
+.knight-report-card{
+  width:100%;
+  max-width:380px;
+  border:1px solid rgba(177,76,255,.22);
+  border-radius:10px;
+  overflow:hidden;
+  background:linear-gradient(180deg,rgba(7,8,13,.88),rgba(1,2,6,.97));
+  box-shadow:0 0 22px rgba(0,0,0,.45),inset 0 0 24px rgba(255,255,255,.02);
+  min-height:418px;
+}
+.knight-report-card.red{border-color:rgba(255,70,90,.34)}
+.knight-report-card.blue{border-color:rgba(58,158,255,.34)}
+.knight-report-card.purple{border-color:rgba(185,85,255,.34)}
+.knight-report-card.green{border-color:rgba(91,255,126,.28)}
+.knight-report-card.silver{border-color:rgba(190,190,210,.22);filter:saturate(.88)}
+.report-art{
+  height:214px;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+  overflow:hidden;
+}
+.report-art:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.06) 56%,rgba(0,0,0,.82));}
+.report-art-shade{position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.05),transparent 38%);z-index:1;}
+/* Report artwork already contains the knight title/status. Hide duplicate HTML overlays. */
+.report-card-title,.report-badge{display:none !important;}
+.report-card-body{padding:12px 14px 14px;background:linear-gradient(180deg,rgba(5,6,12,.90),rgba(2,3,7,.98));}
+.report-meta-grid{display:grid;grid-template-columns:1.25fr 1fr .65fr;border-bottom:1px solid rgba(255,255,255,.08);border-top:1px solid rgba(255,255,255,.05);margin-bottom:10px;}
+.report-meta-grid div{padding:8px 9px;border-right:1px solid rgba(255,255,255,.07);}
+.report-meta-grid div:last-child{border-right:0;}
+.report-meta-grid span{display:block;color:#8f879d;text-transform:uppercase;font-size:9px;margin-bottom:4px;letter-spacing:.45px;}
+.report-meta-grid b{color:#f4efff;font-size:11px;font-weight:700;}
+.report-meta-grid b.healthy{color:#58ff72}.report-meta-grid b.review{color:#ffca3a}.report-meta-grid b.high{color:#ff944d}.report-meta-grid b.critical{color:#ff5757}.report-meta-grid b.pending,.report-meta-grid b.unknown{color:#c5c0ce}
+.findings-block span{display:block;color:#8f879d;text-transform:uppercase;font-size:10px;margin-bottom:6px;letter-spacing:.45px;}
+.findings-block ul{margin:0 0 12px 16px;padding:0;color:#e8dfef;font-size:12px;line-height:1.42;min-height:46px;}
+.view-report-button{
+  width:100%;
+  border:1px solid rgba(177,76,255,.38);
+  background:linear-gradient(90deg,rgba(58,15,82,.72),rgba(16,12,24,.82));
+  color:#fff;
+  border-radius:7px;
+  padding:10px 12px;
+  font-family:Georgia,'Times New Roman',serif;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:flex;justify-content:center;align-items:center;gap:12px;
+}
+.view-report-button:disabled{opacity:.48;cursor:not-allowed;}
+.knight-report-card.red .view-report-button{border-color:rgba(255,73,73,.34);background:linear-gradient(90deg,rgba(90,15,16,.72),rgba(16,12,24,.82));}
+.knight-report-card.blue .view-report-button{border-color:rgba(55,148,255,.34);background:linear-gradient(90deg,rgba(7,46,91,.72),rgba(16,12,24,.82));}
+.knight-report-card.green .view-report-button{border-color:rgba(58,255,114,.28);background:linear-gradient(90deg,rgba(6,72,24,.62),rgba(16,12,24,.82));}
+.reports-quote{position:relative;z-index:2;text-align:center;color:#b14cff;font-family:Georgia,'Times New Roman',serif;font-size:15px;margin:14px 0 0;letter-spacing:.35px;}
+.reports-quote span{color:#77707f;}
+.reports-command-rail{display:grid;gap:12px;}
+.report-side-card{border:1px solid rgba(255,255,255,.10);border-radius:10px;padding:15px;background:linear-gradient(180deg,rgba(6,7,12,.86),rgba(2,3,7,.96));box-shadow:inset 0 0 30px rgba(177,76,255,.035);}
+.report-side-card h3{font-family:Georgia,'Times New Roman',serif;margin:0 0 13px;color:#f6f1ff;font-size:18px;letter-spacing:.4px;}
+.summary-list,.report-stats,.attention-list{display:grid;gap:8px;}
+.summary-list div,.report-stats div{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:8px 10px;border:1px solid rgba(255,255,255,.055);border-radius:7px;background:rgba(255,255,255,.025);color:#e9e2f3;}
+.report-stats div{grid-template-columns:1fr auto;}
+.summary-list b,.report-stats b{color:#fff;}
+.green-dot{background:#58ff72!important}.review-dot{background:#ffca3a!important}.high-dot{background:#ff944d!important}.critical-dot{background:#ff5757!important}
+.attention-item{display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);color:#eee;}
+.attention-item:last-child{border-bottom:0;}
+.attention-item span{width:9px;height:9px;border-radius:50%;background:#ff944d;box-shadow:0 0 10px rgba(255,148,77,.7);margin-top:5px;}
+.attention-item b{font-size:12px;line-height:1.35;font-weight:600;}
+.library-card p{color:#cfc3e6;line-height:1.45;margin:0 0 14px;}
+.library-card button{width:100%;border:1px solid rgba(177,76,255,.38);background:linear-gradient(90deg,#351049,#120916);color:#fff;border-radius:8px;padding:12px;font-family:Georgia,'Times New Roman',serif;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+.report-loading{grid-column:1/-1;border:1px solid rgba(177,76,255,.2);border-radius:10px;padding:30px;color:#cfc3e6;text-align:center;background:rgba(0,0,0,.35);}
+@media(max-width:1700px){
+  .kingdom-reports-grid{grid-template-columns:1fr 300px}
+  .knight-report-grid{grid-template-columns:repeat(2, minmax(300px, 380px));}
+  .report-art{height:205px;}
+}
+@media(max-width:1250px){
+  body[data-view="reports"] .top-command-row{grid-template-columns:1fr !important;}
+  .kingdom-reports-grid{grid-template-columns:1fr}
+  .reports-command-rail{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .knight-report-grid{grid-template-columns:1fr;}
+  .reports-hero-strip{display:grid}
+  .report-filter-row{justify-content:start}
+}
+
+/* v3.30 Main Workspace Card Image Fit
+   DASHBOARD ONLY. Reports page, launch mappings, APIs, and tool functionality are unchanged.
+   Purpose: remove excess top/bottom dead space inside the main workspace artwork frames. */
+body:not([data-view="reports"]) .defender-card{
+  border-radius:14px !important;
+}
+body:not([data-view="reports"]) .art-frame{
+  height:auto !important;
+  min-height:0 !important;
+  aspect-ratio:0.885 / 1 !important;
+  display:block !important;
+  background:#04050a !important;
+  border-bottom:1px solid rgba(177,76,255,.32) !important;
+}
+body:not([data-view="reports"]) .art-frame img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center top !important;
+  display:block !important;
+}
+body:not([data-view="reports"]) .defender-actions{
+  border-top:0 !important;
+  padding-top:11px !important;
+}
+@media(max-width:1650px){
+  body:not([data-view="reports"]) .art-frame{height:auto !important;aspect-ratio:0.885 / 1 !important;}
+}
+@media(min-width:2200px){
+  body:not([data-view="reports"]) .art-frame{height:auto !important;aspect-ratio:0.885 / 1 !important;}
+}
+
+/* v3.31 Clean Dashboard Flow
+   Main dashboard polish only. Reports page remains locked from v3.29/v3.30.
+   Functionality, APIs, button actions, tool mappings, and report intelligence remain unchanged.
+   Goal: cleaner 32-inch monitor flow, reduced dead space, right-oriented banner, no redundant dashboard modules. */
+body:not([data-view="reports"]) .main{
+  padding:16px 18px 14px !important;
+}
+body:not([data-view="reports"]) .main-inner{
+  max-width:2360px !important;
+  width:100% !important;
+  margin:0 auto !important;
+}
+
+/* Top command strip: Knights Table + compact status + banner, all in one clean row. */
+body:not([data-view="reports"]) .top-command-row{
+  display:grid !important;
+  grid-template-columns:330px minmax(0,1fr) !important;
+  gap:16px !important;
+  align-items:stretch !important;
+  margin-bottom:16px !important;
+}
+body:not([data-view="reports"]) .knights-briefing{
+  min-height:118px !important;
+  max-height:158px !important;
+  padding:13px 13px 11px !important;
+  overflow:hidden !important;
+  border-radius:12px !important;
+  background:linear-gradient(180deg,rgba(19,11,30,.94),rgba(5,6,12,.96)) !important;
+}
+body:not([data-view="reports"]) .briefing-head h3{font-size:13px !important;margin:0 !important;}
+body:not([data-view="reports"]) .briefing-head small{font-size:10px !important;}
+body:not([data-view="reports"]) .knights-list{gap:5px !important;margin-top:8px !important;}
+body:not([data-view="reports"]) .knight-row{padding:5px 6px !important;min-height:24px !important;}
+body:not([data-view="reports"]) .knight-row:nth-child(n+3){display:none !important;}
+body:not([data-view="reports"]) .briefing-action{height:30px !important;margin-top:8px !important;padding:0 10px !important;font-size:10px !important;}
+
+body:not([data-view="reports"]) .hero-status-stack{
+  display:grid !important;
+  grid-template-columns:minmax(560px,0.9fr) minmax(760px,1.35fr) !important;
+  gap:14px !important;
+  align-items:stretch !important;
+  min-width:0 !important;
+}
+body:not([data-view="reports"]) .metrics{
+  order:1 !important;
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:0 !important;
+  margin:0 !important;
+  height:104px !important;
+  align-self:center !important;
+  border:1px solid rgba(177,76,255,.28) !important;
+  border-radius:10px !important;
+  overflow:hidden !important;
+  background:linear-gradient(180deg,rgba(14,15,25,.96),rgba(4,5,11,.96)) !important;
+}
+body:not([data-view="reports"]) .metric{
+  border:0 !important;
+  border-right:1px solid rgba(177,76,255,.17) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  padding:14px 10px !important;
+  box-shadow:none !important;
+}
+body:not([data-view="reports"]) .metric:last-child{border-right:0 !important;}
+body:not([data-view="reports"]) .metric strong{font-size:24px !important;margin:5px 0 2px !important;}
+body:not([data-view="reports"]) .metric span{font-size:10px !important;color:#eee !important;letter-spacing:.3px !important;}
+body:not([data-view="reports"]) .metric small{font-size:10px !important;line-height:1.2 !important;}
+body:not([data-view="reports"]) .hero{
+  order:2 !important;
+  height:150px !important;
+  min-height:150px !important;
+  max-height:150px !important;
+  margin:0 !important;
+  border-radius:10px !important;
+  background:#03040a !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+}
+body:not([data-view="reports"]) .hero img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:right center !important;
+}
+
+/* Main work area: remove redundant title block, use the workspace as the header. */
+body:not([data-view="reports"]) #view-dashboard > .section-title{
+  display:none !important;
+}
+body:not([data-view="reports"]) .layout{
+  grid-template-columns:minmax(0,1fr) 310px !important;
+  gap:18px !important;
+  align-items:start !important;
+}
+body:not([data-view="reports"]) .workspace-command-zone{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) 440px !important;
+  gap:18px !important;
+  align-items:start !important;
+  padding:16px !important;
+  border:1px solid rgba(177,76,255,.22) !important;
+  border-radius:14px !important;
+  background:
+    linear-gradient(90deg,rgba(4,5,10,.96),rgba(6,7,13,.88) 55%,rgba(3,4,8,.95)),
+    url('/assets/reports/kingdom_reports_background.png') !important;
+  background-size:cover !important;
+  background-position:center !important;
+  box-shadow:inset 0 0 90px rgba(0,0,0,.78), 0 0 26px rgba(177,76,255,.05) !important;
+}
+body:not([data-view="reports"]) .workspace-scroll{
+  padding:0 !important;
+  overflow-x:auto !important;
+  overflow-y:visible !important;
+}
+body:not([data-view="reports"]) .defender-groups{
+  display:grid !important;
+  grid-template-columns:minmax(390px,420px) minmax(210px,240px) minmax(410px,450px) !important;
+  gap:16px !important;
+  width:100% !important;
+  min-width:0 !important;
+  justify-content:space-between !important;
+  align-items:start !important;
+}
+body:not([data-view="reports"]) .tool-group{
+  padding:12px !important;
+  min-width:0 !important;
+  width:100% !important;
+  border-radius:12px !important;
+  background:linear-gradient(180deg,rgba(15,16,28,.72),rgba(3,4,10,.88)) !important;
+  box-shadow:inset 0 0 22px rgba(177,76,255,.04) !important;
+}
+body:not([data-view="reports"]) .tool-group-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+body:not([data-view="reports"]) .tool-group.single .tool-group-grid{
+  grid-template-columns:minmax(0,1fr) !important;
+}
+body:not([data-view="reports"]) .defender-card{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  border-radius:12px !important;
+}
+body:not([data-view="reports"]) .art-frame{
+  aspect-ratio:0.72 / 1 !important;
+  height:auto !important;
+}
+body:not([data-view="reports"]) .art-frame img{
+  object-fit:cover !important;
+  object-position:center top !important;
+}
+body:not([data-view="reports"]) .defender-actions{
+  padding:9px !important;
+  gap:7px !important;
+}
+body:not([data-view="reports"]) .defender-actions button{
+  height:34px !important;
+  font-size:10px !important;
+  padding:0 6px !important;
+}
+body:not([data-view="reports"]) .primary-actions{
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+}
+body:not([data-view="reports"]) .primary-actions .package-link{
+  grid-column:auto !important;
+}
+body:not([data-view="reports"]) .wide-action{height:34px !important;}
+
+/* Operations intelligence stays prominent but tighter. */
+body:not([data-view="reports"]) .ops-intel-panel{
+  min-height:0 !important;
+  padding:16px !important;
+  border-radius:13px !important;
+  background:linear-gradient(180deg,rgba(20,13,31,.86),rgba(4,5,10,.94)) !important;
+}
+body:not([data-view="reports"]) .posture-card{padding:12px !important;}
+body:not([data-view="reports"]) .ops-section{padding:10px 0 !important;}
+body:not([data-view="reports"]) .ops-row{padding:6px 0 !important;}
+body:not([data-view="reports"]) .advisor-placeholder{display:none !important;}
+
+/* Right dock: remove redundant preserve panel on dashboard only. Preserve mode remains in the left rail/settings. */
+body:not([data-view="reports"]) .right-rail .rail-card:nth-child(3){display:none !important;}
+body:not([data-view="reports"]) .right-rail{
+  width:310px !important;
+  min-width:310px !important;
+  max-width:310px !important;
+  gap:14px !important;
+}
+body:not([data-view="reports"]) .rail-card{padding:14px !important;border-radius:12px !important;}
+
+/* Bottom utility strip: remove redundant lifecycle module, make activity/intelligence compact and purposeful. */
+body:not([data-view="reports"]) .dashboard-lower{
+  display:grid !important;
+  grid-template-columns:minmax(360px,1fr) minmax(360px,1fr) !important;
+  gap:14px !important;
+  margin-top:14px !important;
+}
+body:not([data-view="reports"]) .lifecycle-preview{display:none !important;}
+body:not([data-view="reports"]) .recent,
+body:not([data-view="reports"]) .report-intel{
+  min-height:155px !important;
+  padding:14px !important;
+}
+body:not([data-view="reports"]) .activity-row{grid-template-columns:70px 1fr !important;padding:5px 0 !important;}
+
+@media(min-width:2100px){
+  body:not([data-view="reports"]) .main-inner{max-width:2300px !important;}
+  body:not([data-view="reports"]) .top-command-row{grid-template-columns:360px minmax(0,1fr) !important;}
+  body:not([data-view="reports"]) .hero-status-stack{grid-template-columns:minmax(640px,.95fr) minmax(900px,1.45fr) !important;}
+  body:not([data-view="reports"]) .hero{height:165px !important;min-height:165px !important;max-height:165px !important;}
+  body:not([data-view="reports"]) .workspace-command-zone{grid-template-columns:minmax(0,1fr) 470px !important;}
+  body:not([data-view="reports"]) .defender-groups{grid-template-columns:minmax(430px,470px) minmax(240px,270px) minmax(460px,510px) !important;gap:18px !important;}
+  body:not([data-view="reports"]) .defender-actions button{font-size:11px !important;height:36px !important;}
+}
+@media(max-width:1700px){
+  body:not([data-view="reports"]) .top-command-row{grid-template-columns:310px minmax(0,1fr) !important;}
+  body:not([data-view="reports"]) .hero-status-stack{grid-template-columns:1fr !important;}
+  body:not([data-view="reports"]) .hero{order:1 !important;height:150px !important;}
+  body:not([data-view="reports"]) .metrics{order:2 !important;height:auto !important;}
+  body:not([data-view="reports"]) .workspace-command-zone{grid-template-columns:1fr !important;}
+  body:not([data-view="reports"]) .defender-groups{grid-template-columns:1fr !important;}
+  body:not([data-view="reports"]) .tool-group-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;}
+}
+@media(max-width:1250px){
+  body:not([data-view="reports"]) .top-command-row{grid-template-columns:1fr !important;}
+  body:not([data-view="reports"]) .layout{grid-template-columns:1fr !important;}
+  body:not([data-view="reports"]) .right-rail{width:100% !important;min-width:0 !important;max-width:none !important;grid-template-columns:1fr 1fr !important;}
+  body:not([data-view="reports"]) .dashboard-lower{grid-template-columns:1fr !important;}
+}
+
+/* v3.32 docked intelligence layout
+   Scope: main dashboard layout only. Functionality, reports page, launch mappings, and assets remain locked.
+   Target: Left Nav + Knights Table | Main Tool Workspace | Right Intelligence Dock. */
+body:not([data-view="reports"]) .main{
+  padding:14px 18px 14px !important;
+}
+body:not([data-view="reports"]) .main-inner{
+  max-width:2440px !important;
+  margin:0 auto !important;
+}
+
+/* Sidebar: Knights Table now lives here above Preserve Mode. Keep nav clear and avoid overlap. */
+body:not([data-view="reports"]) .sidebar{
+  gap:12px !important;
+  overflow:hidden !important;
+}
+body:not([data-view="reports"]) .brand-wrap{
+  height:142px !important;
+}
+body:not([data-view="reports"]) .brand-logo{
+  max-width:148px !important;
+  max-height:148px !important;
+}
+body:not([data-view="reports"]) .nav{
+  gap:7px !important;
+}
+body:not([data-view="reports"]) .nav-item{
+  padding:10px 10px !important;
+}
+body:not([data-view="reports"]) .sidebar .knights-briefing{
+  order:3 !important;
+  display:block !important;
+  min-height:185px !important;
+  max-height:230px !important;
+  padding:12px !important;
+  margin-top:4px !important;
+  border:1px solid rgba(177,76,255,.38) !important;
+  border-radius:12px !important;
+  background:linear-gradient(180deg,rgba(18,10,29,.96),rgba(5,6,12,.97)) !important;
+  box-shadow:0 0 20px rgba(177,76,255,.08), inset 0 0 26px rgba(177,76,255,.035) !important;
+  overflow:hidden !important;
+}
+body:not([data-view="reports"]) .sidebar .briefing-head{
+  display:flex !important;
+  gap:8px !important;
+  align-items:flex-start !important;
+}
+body:not([data-view="reports"]) .sidebar .briefing-head h3{
+  font-size:12px !important;
+  margin:0 !important;
+  color:#d377ff !important;
+}
+body:not([data-view="reports"]) .sidebar .briefing-head small{
+  font-size:9px !important;
+}
+body:not([data-view="reports"]) .sidebar .knights-list{
+  display:grid !important;
+  gap:5px !important;
+  margin-top:8px !important;
+  max-height:126px !important;
+  overflow:auto !important;
+}
+body:not([data-view="reports"]) .sidebar .knight-row{
+  padding:5px 6px !important;
+  min-height:24px !important;
+  font-size:10px !important;
+}
+body:not([data-view="reports"]) .sidebar .knight-row:nth-child(n+5){display:none !important;}
+body:not([data-view="reports"]) .sidebar .briefing-action{
+  height:30px !important;
+  margin-top:8px !important;
+  padding:0 8px !important;
+  font-size:10px !important;
+}
+body:not([data-view="reports"]) .sidebar .preserve-card{
+  order:4 !important;
+  margin-top:auto !important;
+  padding:13px 12px !important;
+}
+body:not([data-view="reports"]) .sidebar .preserve-card p{
+  font-size:11px !important;
+}
+body:not([data-view="reports"]) .side-footer{order:5 !important;}
+
+/* Top row: banner + compact status only, no center crowding. */
+body:not([data-view="reports"]) .top-command-row{
+  display:block !important;
+  margin:0 0 14px 0 !important;
+}
+body:not([data-view="reports"]) .hero-status-stack{
+  display:grid !important;
+  grid-template-columns:minmax(680px,1.35fr) minmax(720px,1fr) !important;
+  gap:14px !important;
+  align-items:stretch !important;
+}
+body:not([data-view="reports"]) .hero{
+  order:2 !important;
+  height:144px !important;
+  min-height:144px !important;
+  max-height:144px !important;
+  justify-content:flex-end !important;
+}
+body:not([data-view="reports"]) .hero img{
+  object-fit:cover !important;
+  object-position:right center !important;
+}
+body:not([data-view="reports"]) .metrics{
+  order:1 !important;
+  height:98px !important;
+  align-self:center !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+}
+body:not([data-view="reports"]) .metric{
+  padding:12px 8px !important;
+}
+body:not([data-view="reports"]) .metric strong{
+  font-size:23px !important;
+}
+
+/* Three-zone main layout: center tools plus fixed right intelligence dock. */
+body:not([data-view="reports"]) .layout{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) 355px !important;
+  gap:18px !important;
+  align-items:start !important;
+}
+body:not([data-view="reports"]) .content{
+  min-width:0 !important;
+  overflow:visible !important;
+}
+body:not([data-view="reports"]) #view-dashboard > .section-title{
+  display:none !important;
+}
+body:not([data-view="reports"]) .workspace-command-zone{
+  display:block !important;
+  padding:14px !important;
+  border:1px solid rgba(177,76,255,.22) !important;
+  border-radius:14px !important;
+  background:linear-gradient(180deg,rgba(8,9,18,.86),rgba(3,4,10,.9)) !important;
+  box-shadow:inset 0 0 34px rgba(177,76,255,.035),0 0 22px rgba(0,0,0,.28) !important;
+}
+body:not([data-view="reports"]) .workspace-scroll{
+  padding:0 !important;
+  overflow-x:auto !important;
+  overflow-y:visible !important;
+}
+body:not([data-view="reports"]) .defender-groups{
+  display:grid !important;
+  grid-template-columns:minmax(500px,560px) minmax(250px,280px) minmax(500px,560px) !important;
+  gap:16px !important;
+  justify-content:center !important;
+  align-items:start !important;
+  width:100% !important;
+  min-width:1320px !important;
+  padding-bottom:4px !important;
+}
+body:not([data-view="reports"]) .tool-group{
+  padding:11px !important;
+  border-radius:12px !important;
+  background:linear-gradient(180deg,rgba(13,14,25,.86),rgba(3,4,10,.9)) !important;
+}
+body:not([data-view="reports"]) .tool-group-header{
+  padding-bottom:8px !important;
+  margin-bottom:10px !important;
+}
+body:not([data-view="reports"]) .tool-group-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:11px !important;
+}
+body:not([data-view="reports"]) .tool-group.single .tool-group-grid{
+  grid-template-columns:minmax(0,1fr) !important;
+}
+body:not([data-view="reports"]) .defender-card{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+}
+body:not([data-view="reports"]) .art-frame{
+  aspect-ratio:0.70 / 1 !important;
+  height:auto !important;
+}
+body:not([data-view="reports"]) .defender-actions{
+  padding:8px !important;
+  gap:7px !important;
+}
+body:not([data-view="reports"]) .defender-actions button{
+  height:33px !important;
+  font-size:10px !important;
+  padding:0 5px !important;
+}
+
+/* Right dock: all command intelligence lives here. */
+body:not([data-view="reports"]) .right-rail{
+  width:355px !important;
+  min-width:355px !important;
+  max-width:355px !important;
+  display:grid !important;
+  gap:12px !important;
+  align-content:start !important;
+  position:sticky !important;
+  top:14px !important;
+}
+body:not([data-view="reports"]) .right-rail .ops-intel-panel{
+  display:block !important;
+  min-height:0 !important;
+  padding:14px !important;
+  border:1px solid rgba(177,76,255,.32) !important;
+  border-radius:13px !important;
+  background:linear-gradient(180deg,rgba(20,13,31,.94),rgba(4,5,10,.97)) !important;
+}
+body:not([data-view="reports"]) .right-rail .ops-head h3{
+  font-size:14px !important;
+}
+body:not([data-view="reports"]) .right-rail .posture-card{
+  padding:12px !important;
+}
+body:not([data-view="reports"]) .right-rail .ops-section{
+  padding:9px 0 !important;
+}
+body:not([data-view="reports"]) .right-rail .ops-row{
+  padding:5px 0 !important;
+  font-size:11px !important;
+}
+body:not([data-view="reports"]) .right-rail .advisor-placeholder{display:none !important;}
+body:not([data-view="reports"]) .right-rail .rail-card{
+  padding:13px !important;
+  border-radius:12px !important;
+}
+body:not([data-view="reports"]) .right-rail .rail-card:nth-child(4){display:none !important;}
+
+/* Bottom: compact activity/intelligence only; lifecycle remains available through the left tab. */
+body:not([data-view="reports"]) .dashboard-lower{
+  display:grid !important;
+  grid-template-columns:minmax(360px,1fr) minmax(360px,1fr) !important;
+  gap:14px !important;
+  margin-top:14px !important;
+}
+body:not([data-view="reports"]) .lifecycle-preview{display:none !important;}
+body:not([data-view="reports"]) .recent,
+body:not([data-view="reports"]) .report-intel{
+  min-height:138px !important;
+  padding:13px !important;
+}
+body:not([data-view="reports"]) .activity-row{
+  grid-template-columns:62px 1fr !important;
+  padding:4px 0 !important;
+  font-size:11px !important;
+}
+
+@media(min-width:2100px){
+  body:not([data-view="reports"]) .hero-status-stack{grid-template-columns:minmax(780px,1.35fr) minmax(900px,1fr) !important;}
+  body:not([data-view="reports"]) .layout{grid-template-columns:minmax(0,1fr) 375px !important;}
+  body:not([data-view="reports"]) .right-rail{width:375px !important;min-width:375px !important;max-width:375px !important;}
+  body:not([data-view="reports"]) .defender-groups{grid-template-columns:minmax(560px,620px) minmax(285px,315px) minmax(560px,620px) !important;min-width:1480px !important;}
+}
+@media(max-width:1750px){
+  body:not([data-view="reports"]) .hero-status-stack{grid-template-columns:1fr !important;}
+  body:not([data-view="reports"]) .hero{order:1 !important;}
+  body:not([data-view="reports"]) .metrics{order:2 !important;height:auto !important;}
+  body:not([data-view="reports"]) .layout{grid-template-columns:1fr !important;}
+  body:not([data-view="reports"]) .right-rail{position:static !important;width:100% !important;min-width:0 !important;max-width:none !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+  body:not([data-view="reports"]) .right-rail .ops-intel-panel{grid-column:1/-1 !important;}
+}
+@media(max-width:1250px){
+  body:not([data-view="reports"]) .defender-groups{grid-template-columns:1fr !important;min-width:0 !important;}
+  body:not([data-view="reports"]) .tool-group-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;}
+  body:not([data-view="reports"]) .dashboard-lower{grid-template-columns:1fr !important;}
+}
+
+/* =====================================================================
+   v3.33 - Banner Fit + Knights Table
+   Scope: UI layout only. Preserve all existing buttons, routes, mappings,
+   tool functionality, reports page logic, and intelligence behavior.
+   ===================================================================== */
+
+/* Shared banner fit: no clipping, preserve full art, align right on large screens. */
+.hero,
+.hero-status-stack .hero,
+body[data-view="reports"] .hero-status-stack .hero,
+body:not([data-view="reports"]) .hero-status-stack .hero{
+  overflow:hidden !important;
+  border:1px solid rgba(177,76,255,.34) !important;
+  border-radius:10px !important;
+  background:#05050b !important;
+  box-shadow:0 0 28px rgba(0,0,0,.42), inset 0 0 22px rgba(177,76,255,.045) !important;
+}
+.hero img,
+.hero-status-stack .hero img,
+body[data-view="reports"] .hero-status-stack .hero img,
+body:not([data-view="reports"]) .hero-status-stack .hero img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:right center !important;
+  display:block !important;
+  image-rendering:auto !important;
+}
+
+/* Main dashboard: right-oriented banner with compact status, without clipping. */
+body:not([data-view="reports"]) .top-command-row{
+  margin:0 0 12px 0 !important;
+}
+body:not([data-view="reports"]) .hero-status-stack{
+  display:grid !important;
+  grid-template-columns:minmax(620px,.88fr) minmax(920px,1.42fr) !important;
+  gap:14px !important;
+  align-items:center !important;
+}
+body:not([data-view="reports"]) .hero-status-stack .metrics{
+  order:1 !important;
+  margin:0 !important;
+  height:96px !important;
+  align-self:center !important;
+}
+body:not([data-view="reports"]) .hero-status-stack .hero{
+  order:2 !important;
+  height:158px !important;
+  min-height:158px !important;
+  max-height:158px !important;
+  align-self:center !important;
+}
+
+/* Reports page: banner stretches across the report content column cleanly. */
+body[data-view="reports"] .top-command-row{
+  margin:0 0 12px 0 !important;
+}
+body[data-view="reports"] .hero-status-stack{
+  display:grid !important;
+  grid-template-columns:minmax(320px,440px) minmax(900px,1fr) !important;
+  gap:16px !important;
+  align-items:stretch !important;
+}
+body[data-view="reports"] .hero-status-stack .metrics{
+  order:1 !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:7px !important;
+  height:auto !important;
+  align-self:stretch !important;
+  margin:0 !important;
+}
+body[data-view="reports"] .hero-status-stack .metric{
+  padding:8px 6px !important;
+  min-height:58px !important;
+}
+body[data-view="reports"] .hero-status-stack .metric span{font-size:8px !important;}
+body[data-view="reports"] .hero-status-stack .metric strong{font-size:18px !important;margin:1px 0 !important;}
+body[data-view="reports"] .hero-status-stack .metric small{font-size:8px !important;}
+body[data-view="reports"] .hero-status-stack .hero{
+  order:2 !important;
+  height:172px !important;
+  min-height:172px !important;
+  max-height:172px !important;
+}
+
+/* Knights Table in left dock: taller but bounded; leaves About nav and Preserve Mode intact. */
+.sidebar .knights-briefing,
+body:not([data-view="reports"]) .sidebar .knights-briefing,
+body[data-view="reports"] .sidebar .knights-briefing{
+  order:3 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  min-height:260px !important;
+  max-height:330px !important;
+  margin:14px 8px 12px !important;
+  padding:12px !important;
+  border:1px solid rgba(177,76,255,.38) !important;
+  border-radius:12px !important;
+  background:linear-gradient(180deg,rgba(24,12,35,.95),rgba(5,6,13,.97)) !important;
+  box-shadow:inset 0 0 24px rgba(177,76,255,.06),0 0 18px rgba(0,0,0,.28) !important;
+}
+.sidebar .knights-briefing .briefing-head,
+body:not([data-view="reports"]) .sidebar .briefing-head,
+body[data-view="reports"] .sidebar .briefing-head{
+  display:flex !important;
+  gap:8px !important;
+  align-items:flex-start !important;
+  margin-bottom:9px !important;
+}
+.sidebar .knights-briefing h3,
+body:not([data-view="reports"]) .sidebar .briefing-head h3,
+body[data-view="reports"] .sidebar .briefing-head h3{
+  font-size:12px !important;
+  line-height:1.1 !important;
+  margin:0 !important;
+  color:#d377ff !important;
+  letter-spacing:.4px !important;
+}
+.sidebar .knights-briefing small,
+body:not([data-view="reports"]) .sidebar .briefing-head small,
+body[data-view="reports"] .sidebar .briefing-head small{
+  font-size:9px !important;
+  color:#cfc3e6 !important;
+}
+.sidebar .knights-briefing .knights-list,
+body:not([data-view="reports"]) .sidebar .knights-list,
+body[data-view="reports"] .sidebar .knights-list{
+  display:grid !important;
+  gap:6px !important;
+  margin-top:2px !important;
+  max-height:none !important;
+  overflow:auto !important;
+  flex:1 1 auto !important;
+  padding-right:2px !important;
+}
+.sidebar .knights-briefing .knight-row,
+body:not([data-view="reports"]) .sidebar .knight-row,
+body[data-view="reports"] .sidebar .knight-row{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto !important;
+  align-items:center !important;
+  gap:8px !important;
+  min-height:32px !important;
+  padding:7px 8px !important;
+  border:1px solid rgba(255,255,255,.07) !important;
+  border-radius:8px !important;
+  background:rgba(255,255,255,.035) !important;
+  font-size:10px !important;
+}
+body:not([data-view="reports"]) .sidebar .knight-row:nth-child(n+5){display:grid !important;}
+.sidebar .briefing-action,
+body:not([data-view="reports"]) .sidebar .briefing-action,
+body[data-view="reports"] .sidebar .briefing-action{
+  flex:0 0 auto !important;
+  height:34px !important;
+  margin-top:10px !important;
+  padding:0 8px !important;
+  font-size:10px !important;
+}
+.sidebar .preserve-card,
+body:not([data-view="reports"]) .sidebar .preserve-card,
+body[data-view="reports"] .sidebar .preserve-card{
+  margin-top:auto !important;
+}
+
+@media(min-width:2200px){
+  body:not([data-view="reports"]) .hero-status-stack{grid-template-columns:minmax(720px,.9fr) minmax(1120px,1.45fr) !important;}
+  body:not([data-view="reports"]) .hero-status-stack .hero{height:174px !important;min-height:174px !important;max-height:174px !important;}
+  body[data-view="reports"] .hero-status-stack{grid-template-columns:minmax(360px,470px) minmax(1100px,1fr) !important;}
+  body[data-view="reports"] .hero-status-stack .hero{height:188px !important;min-height:188px !important;max-height:188px !important;}
+  .sidebar .knights-briefing{min-height:310px !important;max-height:390px !important;}
+}
+@media(max-width:1750px){
+  body:not([data-view="reports"]) .hero-status-stack,
+  body[data-view="reports"] .hero-status-stack{grid-template-columns:1fr !important;}
+  body:not([data-view="reports"]) .hero-status-stack .hero,
+  body[data-view="reports"] .hero-status-stack .hero{order:1 !important;height:150px !important;min-height:150px !important;max-height:150px !important;}
+  body:not([data-view="reports"]) .hero-status-stack .metrics,
+  body[data-view="reports"] .hero-status-stack .metrics{order:2 !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;height:auto !important;}
+}
+
+
+/* =====================================================================
+   v3.34 - Evidence Inventory Lift
+   Scope: dashboard layout only. Preserve banner, cards, routes, reports page,
+   launch mappings, backend APIs, and all tool functionality.
+   ===================================================================== */
+body:not([data-view="reports"]) .dashboard-lower{
+  display:grid !important;
+  grid-template-columns:minmax(420px,1fr) minmax(420px,1fr) !important;
+  gap:14px !important;
+  align-items:stretch !important;
+  margin-top:14px !important;
+  max-width:calc(100% - 0px) !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .lifecycle-preview{
+  display:none !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .recent,
+body:not([data-view="reports"]) .dashboard-lower .report-intel,
+body:not([data-view="reports"]) .dashboard-lower .evidence-inventory{
+  grid-column:auto !important;
+  min-height:142px !important;
+  max-height:190px !important;
+  height:100% !important;
+  overflow:hidden !important;
+  padding:13px 14px !important;
+  border:1px solid rgba(177,76,255,.28) !important;
+  background:linear-gradient(180deg,rgba(17,14,28,.94),rgba(5,6,13,.96)) !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .recent h3,
+body:not([data-view="reports"]) .dashboard-lower .evidence-inventory h3{
+  margin:0 0 8px !important;
+  font-size:13px !important;
+  color:#d377ff !important;
+  letter-spacing:.4px !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .evidence-inventory p{
+  margin:0 0 8px !important;
+  font-size:11px !important;
+  line-height:1.35 !important;
+  color:#d9cdea !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .activity-row,
+body:not([data-view="reports"]) .dashboard-lower .file-row{
+  padding:4px 0 !important;
+  font-size:11px !important;
+  line-height:1.25 !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .latest-report-mini{
+  max-height:72px !important;
+  overflow:hidden !important;
+  display:grid !important;
+  gap:5px !important;
+  margin-bottom:8px !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .recent button,
+body:not([data-view="reports"]) .dashboard-lower .evidence-inventory button{
+  height:30px !important;
+  padding:0 12px !important;
+  font-size:11px !important;
+}
+@media(max-width:1300px){
+  body:not([data-view="reports"]) .dashboard-lower{grid-template-columns:1fr !important;}
+}
+
+
+/* =====================================================================
+   v3.35 - Final dashboard feed + Front button fix
+   Scope: main dashboard layout only. Preserve all reports page styling,
+   cards, banner, routes, mappings, and tool functionality.
+   ===================================================================== */
+body:not([data-view="reports"]) .dashboard-lower{
+  grid-template-columns:minmax(360px,0.95fr) minmax(420px,1.05fr) !important;
+  gap:12px !important;
+  margin-top:10px !important;
+  margin-bottom:10px !important;
+  align-items:stretch !important;
+  width:100% !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .recent,
+body:not([data-view="reports"]) .dashboard-lower .evidence-inventory{
+  min-height:118px !important;
+  max-height:150px !important;
+  height:150px !important;
+  overflow:hidden !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .recent #recentList{
+  max-height:82px !important;
+  overflow:hidden !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .latest-report-mini{
+  max-height:58px !important;
+  overflow:hidden !important;
+}
+body:not([data-view="reports"]) .dashboard-lower .recent button,
+body:not([data-view="reports"]) .dashboard-lower .evidence-inventory button{
+  height:28px !important;
+  min-height:28px !important;
+}
+body:not([data-view="reports"]) .main-inner{
+  padding-bottom:12px !important;
+}
+@media(min-width:2100px){
+  body:not([data-view="reports"]) .dashboard-lower{
+    max-width:1500px !important;
+  }
+}

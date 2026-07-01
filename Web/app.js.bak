@@ -1,0 +1,348 @@
+const tools = [
+  {id:'mde', title:'Shadow Deploy MDE', panel:'/assets/panels/warrior_mde_panel.png'},
+  {id:'dfo365', title:'Shadow Deploy DFO365', panel:'/assets/panels/gatekeeper_dfo365_panel.png'},
+  {id:'verify', title:'Shadow Verify', panel:'/assets/panels/trialmaster_verify_panel.png'},
+  {id:'traceops', title:'Shadow Trace Ops', panel:'/assets/panels/hunter_traceops_panel.png'},
+  {id:'ca', title:'Shadow CA', panel:'/assets/panels/sentinel_ca_panel.png'}
+];
+let currentStatus = null;
+let currentReportsPayload = null;
+function api(path){ return fetch(path,{cache:'no-store'}).then(r=>r.json()); }
+function attentionClass(level){ return String(level||'unknown').toLowerCase().replace(/[^a-z0-9_-]/g,''); }
+function safeText(v, fallback=''){ return (v===undefined || v===null || v==='') ? fallback : String(v); }
+function setView(name){
+  document.body.dataset.view = name;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelector(`#view-${name}`)?.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active', n.dataset.view===name));
+  api(`/api/nav?view=${encodeURIComponent(name)}`).catch(()=>{});
+  if(name==='logs') refreshLogs();
+  if(name==='reports') refreshReports();
+}
+function makeToolCard(t, status){
+  const info = status.tools.find(x=>x.id===t.id) || {};
+  const card=document.createElement('div');
+  card.className='defender-card '+(info.exists?'ready':'missing')+' tool-'+t.id;
+  card.title=info.exists?'Click artwork to launch workspace':'Script missing / coming soon';
+  const isVerify = t.id === 'verify';
+  const isTrace = t.id === 'traceops';
+  const isCA = t.id === 'ca';
+
+  let actionHtml = '';
+  if(isVerify){
+    actionHtml = `
+      <div class="primary-actions">
+        <button class="focus-link" data-action="focus" title="Bring running Shadow Verify to front">⬆ FRONT</button>
+        <button class="package-link" data-action="package" title="Build endpoint distribution package">▣ PACKAGE</button>
+        <button class="folder-link" data-action="folder" title="Open Shadow Verify folder">▰ FOLDER</button>
+      </div>
+      <button class="wide-action" data-action="reports">▤ IMPORT / VIEW RESULTS</button>
+      <button class="wide-action" data-action="reports">◈ VIEW LATEST REPORT</button>
+      <button class="wide-action" data-action="reports">◇ VIEW RESULTS JSON</button>
+      <button class="wide-action" data-action="folder">▰ OPEN TOOLS FOLDER</button>`;
+  }
+  else if(isTrace){
+    actionHtml = `
+      <div class="primary-actions two-actions">
+        <button class="focus-link" data-action="focus" title="Bring running tool to front">⬆ FRONT</button>
+        <button class="folder-link" data-action="folder" title="Open tool folder">▰ FOLDER</button>
+      </div>
+      <button class="wide-action" data-action="reports">◇ LATEST INVESTIGATION</button>
+      <button class="wide-action" data-action="reports">♛ EXECUTIVE REPORT</button>
+      <button class="wide-action" data-action="reports">▤ REPORTS</button>
+      <button class="wide-action" data-action="logs">☰ LOGS</button>
+      <button class="wide-action" data-action="folder">▰ OPEN FOLDER</button>`;
+  }
+  else if(isCA){
+    actionHtml = `
+      <div class="primary-actions">
+        <button class="disabled-action" data-action="none">COMING SOON</button>
+        <button class="focus-link" data-action="focus">⬆ FRONT</button>
+        <button class="folder-link" data-action="folder">▰ FOLDER</button>
+      </div>
+      <button class="wide-action disabled" data-action="none">NOT AVAILABLE</button>
+      <button class="wide-action disabled" data-action="none">NOT AVAILABLE</button>
+      <button class="wide-action" data-action="folder">▰ OPEN FOLDER</button>`;
+  }
+  else {
+    actionHtml = `
+      <div class="primary-actions two-actions">
+        <button class="focus-link" data-action="focus" title="Bring running tool to front">⬆ FRONT</button>
+        <button class="folder-link" data-action="folder" title="Open tool folder">▰ FOLDER</button>
+      </div>
+      <button class="wide-action" data-action="reports">▤ REPORTS</button>
+      <button class="wide-action" data-action="logs">☰ LOGS</button>
+      <button class="wide-action" data-action="folder">▰ OPEN FOLDER</button>`;
+  }
+
+  const launchHint = isCA ? 'Coming soon' : (isVerify ? 'Click artwork to run local validation' : 'Click artwork to launch workspace');
+  card.innerHTML=`<div class="art-frame" title="${launchHint}"><img src="${t.panel}?v=3.16" alt="${t.title}"></div><div class="defender-actions">${actionHtml}</div>`;
+  const runLaunch = ()=>{ if(info.exists && !isCA) launchTool(t.id); };
+  card.querySelector('.art-frame').addEventListener('click',(e)=>{ e.stopPropagation(); runLaunch(); });
+  card.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click',(e)=>{
+      e.stopPropagation();
+      const action = btn.dataset.action;
+      if(action === 'launch') { runLaunch(); return; }
+      if(action === 'focus') { focusTool(t.id); return; }
+      if(action === 'folder') { openFolder(t.id); return; }
+      if(action === 'package') { packageVerify(); return; }
+      if(action === 'reports') { setView('reports'); return; }
+      if(action === 'logs') { setView('logs'); return; }
+    });
+  });
+  return card;
+}
+function buildCards(status){
+  const grid=document.getElementById('defenderGrid'); grid.innerHTML='';
+  const groups=[
+    {title:'BUILD & PROTECT', sub:'Deploy tools', cls:'deploy', ids:['mde','dfo365']},
+    {title:'VALIDATE', sub:'Standalone proofing', cls:'single', ids:['verify']},
+    {title:'INVESTIGATE & GOVERN', sub:'Ops and access', cls:'ops', ids:['traceops','ca']}
+  ];
+  groups.forEach(g=>{
+    const wrap=document.createElement('section');
+    wrap.className='tool-group '+g.cls;
+    wrap.innerHTML=`<div class="tool-group-header"><span>${g.title}</span><small>${g.sub}</small></div><div class="tool-group-grid"></div>`;
+    const inner=wrap.querySelector('.tool-group-grid');
+    g.ids.forEach(id=>{
+      const tool=tools.find(t=>t.id===id);
+      if(tool) inner.appendChild(makeToolCard(tool,status));
+    });
+    grid.appendChild(wrap);
+  });
+}
+
+function renderKnightsTable(status){
+  const table=document.getElementById('knightsTable');
+  if(!table || !status || !status.tools){ return; }
+  const intelTools=(status.intelligence && status.intelligence.tools) ? status.intelligence.tools : [];
+  const roleMap={
+    mde:{label:'Warrior', icon:'🛡'},
+    dfo365:{label:'Gatekeeper', icon:'✉'},
+    verify:{label:'Trial Master', icon:'◎'},
+    traceops:{label:'Hunter', icon:'🦅'},
+    ca:{label:'Sentinel', icon:'🗝'}
+  };
+  table.innerHTML='';
+  status.tools.forEach(t=>{
+    const intel=intelTools.find(x=>x.id===t.id) || {};
+    const meta=roleMap[t.id] || {label:t.name, icon:'◆'};
+    const row=document.createElement('div');
+    const count=t.reportCount||0;
+    const level=safeText(t.attention || intel.attention, t.exists ? 'Ready' : 'Pending');
+    row.className='knight-row '+(!t.exists?'pending':attentionClass(level));
+    const latest=t.latestReport ? t.latestReport : (t.latestLog ? t.latestLog : (t.exists ? 'No evidence indexed yet' : 'Coming soon'));
+    const statusText = !t.exists ? 'Pending' : (level==='Unknown' ? (count>0 ? count+' reports' : 'Ready') : level);
+    row.innerHTML=`<span class="knight-title"><i>${meta.icon}</i><em><bdi>${meta.label}</bdi><small>${latest}</small></em></span><b>${statusText}</b>`;
+    table.appendChild(row);
+  });
+}
+
+function renderStatus(status){
+  currentStatus=status;
+  renderKnightsTable(status);
+  document.getElementById('metricTools').textContent = `${status.readyCount} / ${status.totalCount}`;
+  document.getElementById('metricToolsSub').textContent = status.readyCount===status.totalCount?'All defenders ready':'Some workspaces pending';
+  document.getElementById('metricReports').textContent = status.reportCount;
+  const healthMetric=document.getElementById('metricHealth');
+  if(healthMetric){ healthMetric.textContent = status.attentionLevel && status.attentionLevel !== 'Unknown' ? status.attentionLevel : status.health; }
+  document.getElementById('metricLast').textContent = status.lastActivityAgo || 'Now';
+  document.getElementById('metricLastSub').textContent = status.lastActivity || 'Shadow Throne active';
+  const kingdom=document.getElementById('kingdomStatus'); kingdom.innerHTML='';
+  status.tools.forEach(t=>{
+    const row=document.createElement('div'); row.className='status-row';
+    row.innerHTML=`<span><i class="dot ${t.exists?'':'wait'}"></i>${t.name}</span><b class="${t.exists?'green':''}">${t.exists ? ((t.attention && t.attention !== 'Unknown') ? t.attention : 'Ready') + (t.reportCount ? ' · ' + t.reportCount + ' reports' : '') : 'Coming Soon'}</b>`;
+    kingdom.appendChild(row);
+  });
+  const recent=document.getElementById('recentList'); recent.innerHTML='';
+  (status.recent||[]).slice(0,6).forEach(x=>{const r=document.createElement('div'); r.className='activity-row'; r.innerHTML=`<small>${x.time}</small><span>${x.message}</span>`; recent.appendChild(r);});
+
+  const opsHealth=document.getElementById('opsServiceHealth');
+  if(opsHealth){
+    opsHealth.innerHTML='';
+    status.tools.forEach(t=>{
+      const r=document.createElement('div');
+      r.className='ops-row';
+      r.innerHTML=`<span><i class="dot ${t.exists?'':'wait'}"></i>${t.area || t.name}</span><b class="${t.exists?'green':''}">${t.exists ? (t.attention && t.attention !== 'Unknown' ? t.attention : 'Ready') : 'Pending'}</b>`;
+      opsHealth.appendChild(r);
+    });
+  }
+  const opsReports=document.getElementById('opsReportIntel');
+  if(opsReports){
+    opsReports.innerHTML='';
+    status.tools.forEach(t=>{
+      const r=document.createElement('div');
+      r.className='ops-row';
+      const count=t.reportCount||0;
+      r.innerHTML=`<span>${t.role || t.name}</span><b>${count} report${count===1?'':'s'} · ${t.logCount||0} logs</b>`;
+      opsReports.appendChild(r);
+    });
+  }
+  const pct = status.healthScore !== undefined ? status.healthScore : (status.totalCount ? Math.round((status.readyCount / status.totalCount) * 100) : 0);
+  const score=document.getElementById('opsScore');
+  const scoreBar=document.getElementById('opsScoreBar');
+  const scoreText=document.getElementById('opsScoreText');
+  if(score) score.textContent=pct + '%';
+  if(scoreBar) scoreBar.style.width=pct + '%';
+  if(scoreText) scoreText.textContent=`${status.readyCount} of ${status.totalCount} workspaces ready · ${status.reportCount} reports · ${status.logCount||0} logs indexed`;
+
+  const latestMini=document.getElementById('latestReportsMini');
+  if(latestMini){
+    latestMini.innerHTML='';
+    const reportTools=(status.tools||[]).filter(t=>t.latestReport).slice(0,4);
+    if(!reportTools.length){
+      latestMini.innerHTML='<span>No defender reports indexed yet.</span>';
+    } else {
+      reportTools.forEach(t=>{
+        const r=document.createElement('div');
+        r.className='latest-report-row';
+        r.innerHTML=`<b>${t.name}</b><small>${t.latestReport}</small><strong>${t.reportCount||0} total</strong>`;
+        latestMini.appendChild(r);
+      });
+    }
+  }
+
+  const advisor=document.querySelector('.advisor-placeholder p');
+  if(advisor){
+    const pending=(status.tools||[]).filter(t=>!t.exists).length;
+    const top=(status.intelligence && status.intelligence.topFindings || [])[0];
+    advisor.textContent = top ? `${top.role} reports ${top.attention}: ${top.summary}` : (pending ? `${pending} workspace pending. Future AI summaries will use indexed evidence.` : `All workspaces ready. ${status.reportCount} reports indexed for future summarization.`);
+  }
+  buildCards(status);
+}
+function launchTool(id){ api(`/api/launch?id=${encodeURIComponent(id)}`).then(renderStatus).catch(e=>alert('Launch request failed: '+e)); }
+function focusTool(id){ api(`/api/focus?id=${encodeURIComponent(id)}`).then(r=>{ if(r.status){ renderStatus(r.status); if(r.ok===false && r.message){ alert(r.message); } } else { renderStatus(r); } }).catch(e=>alert('Bring To Front failed: '+e)); }
+function packageVerify(){ api('/api/packageVerify').then(renderStatus).catch(e=>alert('Package build failed: '+e)); }
+function openFolder(target){ api(`/api/open?target=${encodeURIComponent(target)}`).then(renderStatus).catch(e=>alert('Open folder failed: '+e)); }
+function refreshStatus(){ api('/api/status').then(renderStatus).catch(()=>{}); }
+function refreshLogs(){ fetch('/api/logs').then(r=>r.text()).then(t=>{document.getElementById('fullLog').textContent=t;}); }
+function reportRoleMeta(id){
+  const map={
+    mde:{role:'The Warrior', tool:'Shadow Deploy MDE', color:'red', asset:'/assets/reports/warrior_report_card.png', fallback:'/assets/panels/warrior_mde_panel.png'},
+    dfo365:{role:'The Gatekeeper', tool:'Shadow Deploy DFO365', color:'blue', asset:'/assets/reports/gatekeeper_report_card.png', fallback:'/assets/panels/gatekeeper_dfo365_panel.png'},
+    verify:{role:'The Trial Master', tool:'Shadow Verify', color:'purple', asset:'/assets/reports/trialmaster_report_card.png', fallback:'/assets/panels/trialmaster_verify_panel.png'},
+    traceops:{role:'The Hunter', tool:'Shadow Trace Ops', color:'green', asset:'/assets/reports/hunter_report_card.png', fallback:'/assets/panels/hunter_traceops_panel.png'},
+    ca:{role:'The Sentinel', tool:'Shadow CA', color:'silver', asset:'/assets/reports/sentinel_report_card.png', fallback:'/assets/panels/sentinel_ca_panel.png'}
+  };
+  return map[id] || {role:'Shadow Knight', tool:'Shadow Suite', color:'purple', asset:'/assets/ShadowSuiteCastle.png', fallback:'/assets/ShadowSuiteCastle.png'};
+}
+function statusWord(level, exists){
+  if(!exists) return 'Pending';
+  const l=String(level||'Unknown');
+  return l==='Unknown' ? 'Healthy' : l;
+}
+function statusScore(level, exists){
+  if(!exists) return '—';
+  const l=String(level||'Healthy').toLowerCase();
+  if(l==='critical') return '45%';
+  if(l==='high') return '58%';
+  if(l==='review') return '78%';
+  if(l==='healthy') return '92%';
+  return '80%';
+}
+function openReportPath(path){
+  if(!path){ return; }
+  api(`/api/openReport?path=${encodeURIComponent(path)}`).then(renderStatus).catch(()=>{});
+}
+function renderReportCard(tool, files){
+  const meta=reportRoleMeta(tool.id);
+  const latest=tool.latestReport || '';
+  const latestPath=tool.latestReportPath || '';
+  const level=statusWord(tool.attention, tool.exists);
+  const score=statusScore(tool.attention, tool.exists);
+  const findings=[];
+  if(tool.signals && tool.signals.length){ findings.push(...tool.signals.slice(0,2)); }
+  if(!findings.length && tool.summary){ findings.push(tool.summary); }
+  if(!findings.length){ findings.push(tool.exists ? 'No attention items indexed yet.' : 'Coming soon'); }
+  const card=document.createElement('article');
+  card.className=`knight-report-card ${attentionClass(level)} ${meta.color}`;
+  card.dataset.toolId=tool.id;
+  card.innerHTML=`
+    <div class="report-art" style="background-image:url('${meta.asset}'),url('${meta.fallback}')">
+      <div class="report-art-shade"></div>
+      <div class="report-card-title"><span class="report-shield">♜</span><div><h3>${meta.role}</h3><small>${meta.tool}</small></div></div>
+      <span class="report-badge ${attentionClass(level)}">${level}</span>
+    </div>
+    <div class="report-card-body">
+      <div class="report-meta-grid">
+        <div><span>Last report</span><b>${tool.latestReportModified || '—'}</b></div>
+        <div><span>Status</span><b class="${attentionClass(level)}">${level}</b></div>
+        <div><span>Score</span><b>${score}</b></div>
+      </div>
+      <div class="findings-block"><span>Top findings</span><ul>${findings.slice(0,3).map(x=>`<li>${String(x).replace(/^\w+:\s*/,'')}</li>`).join('')}</ul></div>
+      <button class="view-report-button" ${latestPath?'':'disabled'}>${latestPath?'View Report':'No Report Yet'} <span>↗</span></button>
+    </div>`;
+  const btn=card.querySelector('.view-report-button');
+  if(latestPath){ btn.addEventListener('click',()=>openReportPath(latestPath)); }
+  return card;
+}
+function renderReportsPage(payload){
+  if(payload){ currentReportsPayload = payload; }
+  const data=payload || currentReportsPayload || {files:[], intelligence:{tools:[]}};
+  const intel=data.intelligence || {};
+  const tools=intel.tools || [];
+  const files=data.files || [];
+  const selected=(document.getElementById('reportKnightFilter')?.value)||'all';
+  const cardHost=document.getElementById('knightReportCards');
+  if(cardHost){
+    cardHost.innerHTML='';
+    const shown=tools.filter(t=>selected==='all' || t.id===selected);
+    if(!shown.length){ cardHost.innerHTML='<div class="report-loading">No report intelligence available yet.</div>'; }
+    shown.forEach(t=>cardHost.appendChild(renderReportCard(t,files)));
+  }
+  const summary=document.getElementById('reportKingdomSummary');
+  if(summary){
+    const counts=intel.attentionCounts || {};
+    summary.innerHTML=`
+      <div><span class="dot green-dot"></span><span>Healthy</span><b>${counts.Healthy||0}</b></div>
+      <div><span class="dot review-dot"></span><span>Review</span><b>${counts.Review||0}</b></div>
+      <div><span class="dot high-dot"></span><span>High</span><b>${counts.High||0}</b></div>
+      <div><span class="dot critical-dot"></span><span>Critical</span><b>${counts.Critical||0}</b></div>
+      <div><span class="dot wait"></span><span>Pending</span><b>${counts.Unknown||0}</b></div>`;
+  }
+  const stats=document.getElementById('reportIntelligenceStats');
+  if(stats){
+    const reporting=tools.filter(t=>(t.reportCount||0)>0).length;
+    const week=files.filter(f=>{
+      const d=Date.parse(f.modified); return !Number.isNaN(d) && (Date.now()-d)<(7*24*60*60*1000);
+    }).length;
+    stats.innerHTML=`
+      <div><span>Total Reports</span><b>${files.length}</b></div>
+      <div><span>New This Week</span><b>${week}</b></div>
+      <div><span>Tools Reporting</span><b>${reporting} / ${tools.length||5}</b></div>
+      <div><span>Last Updated</span><b>${(intel.generated||'').replace('T',' ') || 'Now'}</b></div>`;
+  }
+  const attention=document.getElementById('reportTopAttention');
+  if(attention){
+    const findings=(intel.topFindings||[]).slice(0,4);
+    attention.innerHTML='';
+    if(!findings.length){ attention.innerHTML='<div class="attention-item"><span></span><b>No attention items indexed yet.</b></div>'; }
+    findings.forEach(f=>{
+      const row=document.createElement('div');
+      row.className='attention-item';
+      row.innerHTML=`<span></span><b>${f.role || f.tool}: ${f.summary || f.attention || 'Review latest evidence'}</b>`;
+      attention.appendChild(row);
+    });
+  }
+}
+function refreshReports(){
+  const btn=document.getElementById('refreshReportIntelligence');
+  const oldText=btn ? btn.textContent : '';
+  if(btn){ btn.textContent='Refreshing...'; btn.disabled=true; }
+  return api('/api/reports?ts='+Date.now()).then(data=>{
+    currentReportsPayload=data;
+    renderReportsPage(data);
+    refreshStatus();
+  }).catch(e=>{ console.warn('Report refresh failed', e); }).finally(()=>{
+    if(btn){ btn.textContent=oldText || 'Refresh Intel'; btn.disabled=false; }
+  });
+}
+document.querySelectorAll('.nav-item').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+document.querySelectorAll('[data-view-jump]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.viewJump)));
+document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openFolder(b.dataset.open)));
+document.querySelectorAll('[data-highlight]').forEach(b=>b.addEventListener('click',()=>{ api(`/api/nav?view=lifecycle-${encodeURIComponent(b.dataset.highlight)}`).catch(()=>{}); }));
+document.getElementById('refreshLogs')?.addEventListener('click', refreshLogs);
+document.getElementById('refreshReportIntelligence')?.addEventListener('click', refreshReports);
+document.getElementById('reportKnightFilter')?.addEventListener('change', ()=>{ renderReportsPage(currentReportsPayload); });
+refreshStatus(); setInterval(refreshStatus, 5000);

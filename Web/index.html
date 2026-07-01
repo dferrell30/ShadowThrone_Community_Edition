@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Shadow Throne v1.0 - Command Center</title>
+<link href="/web/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="app">
+<aside class="sidebar">
+<div class="brand-wrap"><img alt="Shadow Suite" class="brand-logo" src="/assets/vampirelogo.png"/></div>
+<nav class="nav">
+<button class="nav-item active" data-view="dashboard"><span>⌂</span><div><b>THRONE ROOM</b><small>Dashboard</small></div></button>
+<button class="nav-item" data-view="lifecycle"><span>✣</span><div><b>LIFECYCLE MAP</b><small>Workflow</small></div></button>
+<button class="nav-item" data-view="reports"><span>▤</span><div><b>REPORTS</b><small>Open &amp; Manage</small></div></button>
+<button class="nav-item" data-view="logs"><span>☰</span><div><b>LOGS</b><small>Activity &amp; Events</small></div></button>
+<button class="nav-item" data-view="settings"><span>⚙</span><div><b>SETTINGS</b><small>Configuration</small></div></button>
+<button class="nav-item" data-view="about"><span>ⓘ</span><div><b>ABOUT</b><small>About Shadow Suite</small></div></button>
+</nav>
+<aside aria-label="Knights Table Reports" class="knights-briefing">
+<div class="briefing-head"><span>♜</span><div><h3>KNIGHTS TABLE</h3><small>Latest indexed evidence from the defenders</small></div></div>
+<div class="knights-list" id="knightsTable">
+<div class="knight-row"><span>Waiting for reports...</span><b>--</b></div>
+</div>
+<button class="briefing-action" data-view-jump="reports">Open Shadow Intelligence →</button>
+</aside><div class="side-card preserve-card"><div class="crown">♛</div><b>PRESERVE MODE</b><p>All tools launch in isolated PowerShell processes. Original functionality remains unchanged.</p></div>
+<footer class="side-footer"><b>Shadow Throne v1.0</b><span>All systems under command.</span></footer>
+</aside>
+<main class="main">
+<div class="main-inner">
+<section class="top-command-row">
+
+<div class="hero-status-stack">
+<section class="hero"><img alt="Shadow Throne" src="/assets/ShadowThroneBanner-Final.png?v=1.0"/></section>
+<section class="metrics">
+<div class="metric"><span>TOOLS STATUS</span><strong id="metricTools">0 / 5</strong><small id="metricToolsSub">Checking...</small></div>
+<div class="metric"><span>REPORTS</span><strong id="metricReports">0</strong><small>Generated</small></div>
+<div class="metric"><span>SYSTEM HEALTH</span><strong class="green" id="metricHealth">READY</strong><small>All Systems Operational</small></div>
+<div class="metric"><span>LAST ACTIVITY</span><strong id="metricLast">Now</strong><small id="metricLastSub">Shadow Throne started</small></div>
+</section>
+</div>
+</section>
+<div class="layout">
+<section class="content">
+<section class="view active" id="view-dashboard">
+<div class="section-title"><span>◆</span><div><h2>SHADOW DEFENDERS</h2><p>Select a defender card to launch. Full artwork is preserved and original tools remain unchanged.</p></div></div>
+<div class="workspace-command-zone">
+<div class="workspace-scroll"><div class="defender-groups" id="defenderGrid"></div></div>
+
+</div>
+<div class="dashboard-lower">
+<div class="panel lifecycle-preview">
+<div class="panel-head"><h3>LIFECYCLE COMMAND PATH</h3><span>Interactive roadmap placeholder</span></div>
+<img alt="Lifecycle Map" src="/assets/panels/lifecycle_map_panel.png"/>
+<div class="lifecycle-mini-actions">
+<button data-view-jump="lifecycle">Open Lifecycle Map</button>
+<button data-view-jump="reports">Shadow Intelligence</button>
+</div>
+</div>
+<div class="panel recent"><h3>RECENT ACTIVITY</h3><div id="recentList"></div><button data-view-jump="logs">View full activity log →</button></div>
+<div class="panel report-intel evidence-inventory"><h3>EVIDENCE INVENTORY</h3><p>Latest indexed evidence from reports and logs. Detailed evidence remains owned by each original tool.</p><div class="latest-report-mini" id="latestReportsMini"><span>Waiting for evidence inventory...</span></div><button data-view-jump="reports">Open Evidence Inventory →</button></div>
+</div>
+</section>
+<section class="view" id="view-lifecycle"><div class="section-title"><span>✣</span><div><h2>LIFECYCLE MAP</h2><p>The Shadow Suite operational flow. Icons are staged for future interaction while current tool launches remain unchanged.</p></div></div><div class="lifecycle-command-row"><button data-highlight="deploy"><span>🛡</span><b>DEPLOY</b><small>MDE + DFO365</small></button><button data-highlight="govern"><span>✉</span><b>GOVERN</b><small>Policy + access</small></button><button data-highlight="validate"><span>◎</span><b>VALIDATE</b><small>Shadow Verify</small></button><button data-highlight="investigate"><span>🦅</span><b>INVESTIGATE</b><small>Trace Ops</small></button><button data-highlight="access"><span>🗝</span><b>GOVERN ACCESS</b><small>Shadow CA</small></button></div><div class="large-visual contained"><img alt="Lifecycle Map" src="/assets/panels/lifecycle_map_panel.png"/></div><div class="flow-detail"><div><b>Deploy</b><span>Build and harden Microsoft Defender controls with Shadow Deploy MDE and DFO365.</span></div><div><b>Govern</b><span>Protect identity, mail flow, endpoint baselines, and Conditional Access.</span></div><div><b>Validate</b><span>Use Shadow Verify to test telemetry, detections, and alert visibility.</span></div><div><b>Investigate</b><span>Use Shadow Trace Ops to hunt, analyze, correlate, and report.</span></div></div></section>
+<section class="view report-page-view" id="view-reports">
+<div class="kingdom-reports-page">
+<section class="reports-hero-strip">
+<div>
+<h1>KINGDOM REPORTS</h1>
+<p>Intelligence and evidence from your Knights. Reports stay owned by each tool; Shadow Throne indexes the last known evidence.</p>
+</div>
+<div class="report-filter-row">
+<select aria-label="Filter reports by knight" id="reportKnightFilter">
+<option value="all">All Knights</option>
+<option value="mde">The Warrior</option>
+<option value="dfo365">The Gatekeeper</option>
+<option value="verify">The Trial Master</option>
+<option value="traceops">The Hunter</option>
+<option value="ca">The Sentinel</option>
+</select>
+<button class="small-report-button" id="refreshReportIntelligence">Refresh Intel</button>
+</div>
+</section>
+<div class="kingdom-reports-grid">
+<section class="report-council-board">
+<div class="knight-report-grid" id="knightReportCards">
+<div class="report-loading">Summoning the Knights Table...</div>
+</div>
+<p class="reports-quote">“The Kingdom is not built on guesswork. It is built on evidence.” <span>— The Throne</span></p>
+</section>
+<aside class="reports-command-rail">
+<div class="report-side-card kingdom-summary-card">
+<h3>KINGDOM SUMMARY</h3>
+<div class="summary-list" id="reportKingdomSummary"></div>
+</div>
+<div class="report-side-card report-intelligence-card">
+<h3>REPORT INTELLIGENCE</h3>
+<div class="report-stats" id="reportIntelligenceStats"></div>
+</div>
+<div class="report-side-card top-attention-card">
+<h3>TOP ATTENTION ITEMS</h3>
+<div class="attention-list" id="reportTopAttention"></div>
+</div>
+<div class="report-side-card library-card">
+<h3>OPEN FULL REPORTS LIBRARY</h3>
+<p>Browse all reports, logs, and evidence generated by your Knights.</p>
+<button data-open="reports">Open Library ↗</button>
+</div>
+</aside>
+</div>
+</div>
+</section>
+<section class="view" id="view-logs"><div class="section-title"><span>☰</span><div><h2>ACTIVITY LOG</h2><p>Shadow Throne launcher events.</p></div></div><div class="action-row"><button data-open="logs">Open Logs Folder</button><button id="refreshLogs">Refresh Logs</button></div><pre class="logbox" id="fullLog"></pre></section>
+<section class="view" id="view-settings"><div class="section-title"><span>⚙</span><div><h2>SETTINGS</h2><p>Preserve-first launcher configuration.</p></div></div><div class="settings-grid"><div><b>Mode</b><span>Preserve Mode</span></div><div><b>Launch Model</b><span>Isolated PowerShell Process</span></div><div><b>Tool Scripts</b><span>Tools\&lt;ToolName&gt;\*.ps1</span></div><div><b>Assets</b><span>Assets\Panels and Assets root</span></div></div></section>
+<section class="view" id="view-about"><div class="section-title"><span>ⓘ</span><div><h2>ABOUT SHADOW THRONE</h2><p>The command seat of Shadow Suite.</p></div></div><div class="about-panel"><h1>SHADOW THRONE v1.0</h1><p>Shadow Throne coordinates Shadow Suite defensive security tools without merging or modifying their internal functionality. The throne room launches each defender in isolation and keeps operational evidence visible.</p><p><b>Doctrine:</b> Preserve the defenders. Improve the castle.</p></div></section>
+</section>
+<aside class="right-rail"><aside aria-label="Operations Intelligence" class="ops-intel-panel">
+<div class="ops-head"><span>◆</span><div><h3>OPERATIONS INTELLIGENCE</h3><small>Read-only command summary</small></div></div>
+<div class="posture-card">
+<div class="posture-top"><span>Suite posture</span><strong id="opsScore">--%</strong></div>
+<div class="posture-bar"><i id="opsScoreBar"></i></div>
+<small id="opsScoreText">Waiting for tool status...</small>
+</div>
+<div class="ops-section">
+<h4>Service health</h4>
+<div class="ops-list" id="opsServiceHealth"></div>
+</div>
+<div class="ops-section">
+<h4>Report intelligence</h4>
+<div class="ops-list compact" id="opsReportIntel"></div>
+</div>
+<div class="ops-section advisor-placeholder">
+<h4>Shadow AI advisor</h4>
+<p>Reserved for future report summarization and recommended next actions.</p>
+</div>
+</aside>
+<div class="rail-card"><h3>♛ KINGDOM STATUS</h3><div id="kingdomStatus"></div><div class="overall"><span>Overall Status:</span><b class="green">READY</b></div></div>
+<div class="rail-card quick"><h3>⚡ QUICK ACCESS</h3><button data-open="reports">Reports Folder ›</button><button data-open="logs">Logs Folder ›</button><button data-open="exports">Exports Folder ›</button><button data-open="config">Config Folder ›</button><button data-open="root">Suite Folder ›</button></div>
+
+</aside>
+</div>
+</div>
+</main>
+</div>
+<script src="/web/app.js"></script>
+</body>
+</html>
