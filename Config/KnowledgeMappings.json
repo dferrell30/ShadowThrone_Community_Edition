@@ -1,0 +1,6 @@
+{
+  "ShadowDeploy": ["Tome01-Deploy"],
+  "ShadowVerify": ["Tome02-Validate"],
+  "ShadowTraceOps": ["Tome04-Investigate"],
+  "ShadowCA": ["Tome05-Govern"]
+}

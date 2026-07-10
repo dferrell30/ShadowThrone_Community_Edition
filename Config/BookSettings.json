@@ -1,0 +1,6 @@
+{
+  "UseGitHub": true,
+  "UseLocalCache": true,
+  "Repository": "https://github.com/YourName/ShadowBookOfTomes",
+  "DefaultTome": "Tome00-Foundations"
+}
